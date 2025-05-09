@@ -1,0 +1,5 @@
+baseURL = 'https://nathantebbs.com/'
+languageCode = 'en-us'
+title = 'nathantebbs.com'
+
+theme = 'lugo'
