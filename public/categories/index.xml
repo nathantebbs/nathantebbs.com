@@ -36,6 +36,8 @@
 		
 		<guid>http://localhost:1313/project/tucson-crime-analysis/</guid>
 		<description>&lt;p&gt;In this project we analysized a lot of crime&lt;/p&gt;
+&lt;h1 id=&#34;link-to-report&#34;&gt;Link to report&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;http://localhost:1313/csc-380-final-report.pdf&#34;&gt;Analysis (PDF)&lt;/a&gt;&lt;/p&gt;
 </description>
 	</item>
 	

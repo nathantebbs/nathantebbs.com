@@ -13,6 +13,14 @@ html, body {
 	overflow-x: hidden;
 }
 
+body.page,body.section,body.term {
+	height: auto;
+	width: 100%;
+	margin: 2rem auto;
+	padding: 1rem;
+	max-width: 800px;
+}
+
 
 a {
 	color: #EB5160 ;
@@ -35,6 +43,7 @@ footer {
 	text-align: center ;
 	clear: both ;
 }
+
 
 #home-splash {
 	display: flex;
