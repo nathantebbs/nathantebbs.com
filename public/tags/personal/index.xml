@@ -1,44 +1,44 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
 	<title>nathantebbs.com</title>
-	<link>http://localhost:1313/tags/personal/</link>
+	<link>https://nathantebbs.com/tags/personal/</link>
 	<description>Recent content in Personal on nathantebbs.com</description>
 	<generator>Hugo -- gohugo.io</generator>
 	<language>en-us</language>
 	<lastBuildDate>Fri, 09 May 2025 02:08:19 -0700</lastBuildDate>
     
-        <atom:link href="http://localhost:1313/tags/personal/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://nathantebbs.com/tags/personal/index.xml" rel="self" type="application/rss+xml" />
 	
 	
 	<item>
 		<title>Second Post</title>
-		<link>http://localhost:1313/blog/second-post/</link>
+		<link>https://nathantebbs.com/blog/second-post/</link>
 		<pubDate>Fri, 09 May 2025 02:08:19 -0700</pubDate>
 		
-		<guid>http://localhost:1313/blog/second-post/</guid>
+		<guid>https://nathantebbs.com/blog/second-post/</guid>
 		<description>&lt;p&gt;This is my second blog post!&lt;/p&gt;
 </description>
 	</item>
 	
 	<item>
 		<title>First Post</title>
-		<link>http://localhost:1313/blog/first-post/</link>
+		<link>https://nathantebbs.com/blog/first-post/</link>
 		<pubDate>Fri, 09 May 2025 02:05:56 -0700</pubDate>
 		
-		<guid>http://localhost:1313/blog/first-post/</guid>
+		<guid>https://nathantebbs.com/blog/first-post/</guid>
 		<description>&lt;p&gt;This is my first blog post!&lt;/p&gt;
 </description>
 	</item>
 	
 	<item>
 		<title>Tucson Crime Analysis</title>
-		<link>http://localhost:1313/project/tucson-crime-analysis/</link>
+		<link>https://nathantebbs.com/project/tucson-crime-analysis/</link>
 		<pubDate>Fri, 09 May 2025 01:41:42 -0700</pubDate>
 		
-		<guid>http://localhost:1313/project/tucson-crime-analysis/</guid>
+		<guid>https://nathantebbs.com/project/tucson-crime-analysis/</guid>
 		<description>&lt;p&gt;In this project we analysized a lot of crime&lt;/p&gt;
 &lt;h1 id=&#34;link-to-report&#34;&gt;Link to report&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&#34;http://localhost:1313/csc-380-final-report.pdf&#34;&gt;Analysis (PDF)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://nathantebbs.com/csc-380-final-report.pdf&#34;&gt;Analysis (PDF)&lt;/a&gt;&lt;/p&gt;
 </description>
 	</item>
 	

@@ -5,7 +5,8 @@
 		<h1>{{ .Title }}</h1>
 		<div id="home-splash-content">
 			<div class="img-full-round">
-				<img src="/headshot.jpg" alt="headshot">
+			    {{ $image := resources.Get "headshot.jpg" }}
+			    <img src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}">
 			</div>
 			<div id="resource-list">
 				<ul>
