@@ -5,8 +5,11 @@
 }
 
 html, body {
-	height: 100%;
-	width: 100%;
+	min-height: 100vh;
+	padding: 0;
+	margin: 0;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
 	font-family: sans-serif ;
 	background: #071013 ;
 	color: #DFE0E2 ;
@@ -16,8 +19,6 @@ html, body {
 body.page,body.section,body.term {
 	height: auto;
 	width: 100%;
-	margin: 2rem auto;
-	padding: 1rem;
 	max-width: 800px;
 }
 
@@ -36,27 +37,28 @@ img {
 }
 
 header h1 {
-	text-align: center ;
+	text-align: right ;
 }
 
 footer {
 	text-align: center ;
 	clear: both ;
+	min-height: 50px;
 }
 
 
 #home-splash {
-	display: flex;
+	display: grid;
 	align-items: center;
-	flex-direction: column;
 	gap: 0.2rem;
 }
 
 #home-splash-wrapper {
-	display: flex;
+	display: grid;
 	align-items: center;
 	justify-content: center;
-	height: 90vh;
+	min-height: 60dvh;
+	padding: 2rem 1rem;
 }
 
 #home-splash-content {
@@ -68,24 +70,15 @@ footer {
 	gap: 3rem;
 }
 
-
-/* For Images */
-.img-full-round {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	overflow: hidden;
-	align-items: center;
+#resource-list {
+    list-style-type: none;
 }
 
-.img-full-round img {
-	width: 100px;
-	height: 100px;
-	border-radius: 50%;
-	object-fit: cover;
-	object-position: top center;
-	box-shadow 0 4px 10px rgba(0,0,0,0.2);
+/* Img style */
+.img-round {
+    border-radius: 25% 10%;
 }
+
 
 /* For TAGLIST.HTML */
 .taglist {
@@ -95,7 +88,8 @@ footer {
 
 /* For NEXTPREV.HTML */
 #nextprev {
-	/* The container for both the previous and next articles. */
+    margin-top: 5rem;
+    margin-bottom: 5rem;
 }
 #prevart {
 	float: left ;

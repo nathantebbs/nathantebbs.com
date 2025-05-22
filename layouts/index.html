@@ -6,7 +6,8 @@
 		<div id="home-splash-content">
 			<div class="img-full-round">
 			    {{ $image := resources.Get "headshot.jpg" }}
-			    <img src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}">
+			    {{ $thumb := $image.Resize "200x Linear"}}
+			    <img src="{{ $thumb.RelPermalink }}" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}" class="img-round">
 			</div>
 			<div id="resource-list">
 				<ul>
@@ -16,6 +17,9 @@
 					</li>
 					{{ end }}
 				</ul>
+			</div>
+			<div id="socials">
+			    
 			</div>
 		</div>
 	</div>
