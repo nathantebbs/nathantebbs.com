@@ -14,14 +14,11 @@
       
       <guid>/posts/crime-data-analysis/</guid>
       <description>&lt;h1 id=&#34;preface&#34;&gt;Preface&lt;/h1&gt;
-&lt;p&gt;This blog post covers my part in a group data analysis project. If you would like the formal report detailing the process, findings, and conclusions complete with images and references you can find that &lt;a href=&#34;/tucson-crime-analysis.pdf&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This blog post covers my part in a group data analysis project. If you would like the formal report detailing the process, findings, and conclusions complete with images and references you can find that &lt;a href=&#34;/tucson-crime-analysis.pdf&#34;&gt;here&lt;/a&gt;. Additionally, The official project showcase for this blog post can be found at in the &lt;a href=&#34;/projects/&#34;&gt;Projects&lt;/a&gt; page.&lt;/p&gt;
 &lt;h1 id=&#34;what-was-the-project-about&#34;&gt;What Was the Project About?&lt;/h1&gt;
-&lt;p&gt;Our goal was to understand how factors like neighborhood income and streetlight presence relate to crime rates in Tucson. We had two main questions:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Do thefts and violent crimes happen more in richer or poorer neighborhoods?&lt;/p&gt;</description>
+&lt;p&gt;Our goal was to understand how factors like neighborhood income and streetlight presence relate to crime rates in Tucson. We had two main questions:&lt;/p&gt;</description>
       <content>&lt;h1 id=&#34;preface&#34;&gt;Preface&lt;/h1&gt;
-&lt;p&gt;This blog post covers my part in a group data analysis project. If you would like the formal report detailing the process, findings, and conclusions complete with images and references you can find that &lt;a href=&#34;/tucson-crime-analysis.pdf&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This blog post covers my part in a group data analysis project. If you would like the formal report detailing the process, findings, and conclusions complete with images and references you can find that &lt;a href=&#34;/tucson-crime-analysis.pdf&#34;&gt;here&lt;/a&gt;. Additionally, The official project showcase for this blog post can be found at in the &lt;a href=&#34;/projects/&#34;&gt;Projects&lt;/a&gt; page.&lt;/p&gt;
 &lt;h1 id=&#34;what-was-the-project-about&#34;&gt;What Was the Project About?&lt;/h1&gt;
 &lt;p&gt;Our goal was to understand how factors like neighborhood income and streetlight presence relate to crime rates in Tucson. We had two main questions:&lt;/p&gt;
 &lt;ol&gt;
@@ -120,14 +117,14 @@
       <pubDate>Tue, 27 May 2025 22:41:10 -0700</pubDate>
       
       <guid>/posts/hello-world/</guid>
-      <description>&lt;h1 id=&#34;how-to-use-this-website&#34;&gt;How to use this website&lt;/h1&gt;
-&lt;p&gt;Hello, this website is the hub for all information that you would like to know about me. To know more about my journey so far checkout the &lt;code&gt;About&lt;/code&gt; page. The &lt;code&gt;Projects&lt;/code&gt; page is a showcase for all my completed projects so far. To see my works in progress, checkout my &lt;a href=&#34;https://github.com/nathantebbs&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;h1 id=&#34;plans-going-forward&#34;&gt;Plans going forward&lt;/h1&gt;
-&lt;p&gt;Over the next few months expect a lot of changes to occur here! I am still working out the specifics of the look, feeling, and functionality of this website. Luckily, my courseload has lightened up over the summer so I am going to be putting most of my time and energy into my personal projects, including nathantebbs.com. So check back periodically to see what I&amp;rsquo;ve been getting up to.&lt;/p&gt;</description>
-      <content>&lt;h1 id=&#34;how-to-use-this-website&#34;&gt;How to use this website&lt;/h1&gt;
-&lt;p&gt;Hello, this website is the hub for all information that you would like to know about me. To know more about my journey so far checkout the &lt;code&gt;About&lt;/code&gt; page. The &lt;code&gt;Projects&lt;/code&gt; page is a showcase for all my completed projects so far. To see my works in progress, checkout my &lt;a href=&#34;https://github.com/nathantebbs&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;h1 id=&#34;plans-going-forward&#34;&gt;Plans going forward&lt;/h1&gt;
-&lt;p&gt;Over the next few months expect a lot of changes to occur here! I am still working out the specifics of the look, feeling, and functionality of this website. Luckily, my courseload has lightened up over the summer so I am going to be putting most of my time and energy into my personal projects, including nathantebbs.com. So check back periodically to see what I&amp;rsquo;ve been getting up to.&lt;/p&gt;
+      <description>&lt;h2 id=&#34;how-to-use-this-website&#34;&gt;How to Use This Website&lt;/h2&gt;
+&lt;p&gt;Welcome! This site serves as the central hub for everything you&amp;rsquo;d like to know about me. To learn more about my journey so far, check out the &lt;code&gt;About&lt;/code&gt; page. The &lt;code&gt;Projects&lt;/code&gt; page highlights the work I&amp;rsquo;ve completed, and for ongoing projects and experiments, you can follow along on my &lt;a href=&#34;https://github.com/nathantebbs&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The home page features my blog posts—less formal entries where I dive into projects, topics that interest me, and occasional announcements.&lt;/p&gt;</description>
+      <content>&lt;h2 id=&#34;how-to-use-this-website&#34;&gt;How to Use This Website&lt;/h2&gt;
+&lt;p&gt;Welcome! This site serves as the central hub for everything you&amp;rsquo;d like to know about me. To learn more about my journey so far, check out the &lt;code&gt;About&lt;/code&gt; page. The &lt;code&gt;Projects&lt;/code&gt; page highlights the work I&amp;rsquo;ve completed, and for ongoing projects and experiments, you can follow along on my &lt;a href=&#34;https://github.com/nathantebbs&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The home page features my blog posts—less formal entries where I dive into projects, topics that interest me, and occasional announcements.&lt;/p&gt;
+&lt;h2 id=&#34;plans-going-forward&#34;&gt;Plans Going Forward&lt;/h2&gt;
+&lt;p&gt;Expect to see lots of changes over the next few months! I&amp;rsquo;m still refining the look, feel, and functionality of this site. With a lighter course load over the summer, I’m focusing more on personal projects—especially &lt;code&gt;nathantebbs.com&lt;/code&gt;. Be sure to check back periodically to see what&amp;rsquo;s new!&lt;/p&gt;
 </content>
     </item>
     

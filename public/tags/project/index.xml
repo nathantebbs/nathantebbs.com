@@ -6,111 +6,124 @@
     <description>Recent content in Project on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 27 May 2025 22:51:52 -0700</lastBuildDate><atom:link href="/tags/project/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 29 May 2025 11:50:58 -0700</lastBuildDate><atom:link href="/tags/project/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Urban Crime Data Analysis</title>
-      <link>/posts/crime-data-analysis/</link>
-      <pubDate>Tue, 27 May 2025 22:51:52 -0700</pubDate>
+      <title>Listro</title>
+      <link>/projects/listro/</link>
+      <pubDate>Thu, 29 May 2025 11:50:58 -0700</pubDate>
       
-      <guid>/posts/crime-data-analysis/</guid>
-      <description>&lt;h1 id=&#34;preface&#34;&gt;Preface&lt;/h1&gt;
-&lt;p&gt;This blog post covers my part in a group data analysis project. If you would like the formal report detailing the process, findings, and conclusions complete with images and references you can find that &lt;a href=&#34;/tucson-crime-analysis.pdf&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;h1 id=&#34;what-was-the-project-about&#34;&gt;What Was the Project About?&lt;/h1&gt;
-&lt;p&gt;Our goal was to understand how factors like neighborhood income and streetlight presence relate to crime rates in Tucson. We had two main questions:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Do thefts and violent crimes happen more in richer or poorer neighborhoods?&lt;/p&gt;</description>
-      <content>&lt;h1 id=&#34;preface&#34;&gt;Preface&lt;/h1&gt;
-&lt;p&gt;This blog post covers my part in a group data analysis project. If you would like the formal report detailing the process, findings, and conclusions complete with images and references you can find that &lt;a href=&#34;/tucson-crime-analysis.pdf&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;h1 id=&#34;what-was-the-project-about&#34;&gt;What Was the Project About?&lt;/h1&gt;
-&lt;p&gt;Our goal was to understand how factors like neighborhood income and streetlight presence relate to crime rates in Tucson. We had two main questions:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Do thefts and violent crimes happen more in richer or poorer neighborhoods?&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Does having more streetlights affect crime rates, especially at night?&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;To answer these, we used datasets from the City of Tucson, including police-reported crimes, arrest records, streetlight locations, and neighborhood income data. My role involved cleaning and merging these datasets, building visualizations, and helping with statistical models to test our hypotheses.&lt;/p&gt;
-&lt;h1 id=&#34;data-cleaning-and-prep&#34;&gt;Data Cleaning and Prep&lt;/h1&gt;
-&lt;p&gt;The datasets were messy, with missing values and inconsistent formats. I used Python libraries like pandas and geopandas to:&lt;/p&gt;
+      <guid>/projects/listro/</guid>
+      <description>&lt;h2 id=&#34;related-content&#34;&gt;Related Content&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/nathantebbs/listro&#34;&gt;Source Code&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;work-in-progress&#34;&gt;Work in Progress&lt;/h2&gt;
+&lt;p&gt;While key foundational features of Listro have been implemented in &lt;code&gt;v0.0.1&lt;/code&gt;, the project remains under active development. Features such as persistent state saving are not yet available, and due to limited testing, users may encounter bugs.&lt;/p&gt;
+&lt;h2 id=&#34;about-listro&#34;&gt;About Listro&lt;/h2&gt;
+&lt;p&gt;When you have a lot to get done, keeping track of tasks can quickly become overwhelming. Since I do most of my work in the terminal using tools like Neovim, I set out to build a terminal user interface (TUI) that fits seamlessly into my existing workflow.&lt;/p&gt;</description>
+      <content>&lt;h2 id=&#34;related-content&#34;&gt;Related Content&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/nathantebbs/listro&#34;&gt;Source Code&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;work-in-progress&#34;&gt;Work in Progress&lt;/h2&gt;
+&lt;p&gt;While key foundational features of Listro have been implemented in &lt;code&gt;v0.0.1&lt;/code&gt;, the project remains under active development. Features such as persistent state saving are not yet available, and due to limited testing, users may encounter bugs.&lt;/p&gt;
+&lt;h2 id=&#34;about-listro&#34;&gt;About Listro&lt;/h2&gt;
+&lt;p&gt;When you have a lot to get done, keeping track of tasks can quickly become overwhelming. Since I do most of my work in the terminal using tools like Neovim, I set out to build a terminal user interface (TUI) that fits seamlessly into my existing workflow.&lt;/p&gt;
+&lt;p&gt;To achieve this, I drew inspiration from other terminal-based tools and prioritized familiarity and efficiency. Core features include:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;Convert dates and times into a usable format (e.g., extracting hours from crime times to categorize them as Morning, Afternoon, Evening, or Night).&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Standardize ward numbers across datasets for accurate merging.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Filter out irrelevant data, like inactive streetlights or missing coordinates.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Merge datasets by ward to create a unified dataset with crime counts, income levels, and streetlight counts.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;This taught me how to handle real-world data, which is rarely perfect, and how to use tools like geopandas for spatial joins to connect streetlight locations with crime data.&lt;/p&gt;
-&lt;h1 id=&#34;exploratory-data-analysis&#34;&gt;Exploratory Data Analysis&lt;/h1&gt;
-&lt;p&gt;I created visualizations to spot patterns in the data:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Strong Keyboard Navigation&lt;/strong&gt;:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;A heatmap to show correlations between income, streetlights, crime counts, and nighttime crime proportions.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;A scatter plot to visualize how crime counts relate to median income, with streetlight counts and nighttime crime proportions as additional dimensions.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Stacked bar charts to show crime types (like larceny or robbery) across wards and time periods.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;A histogram to track crime frequency by hour.&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;q&lt;/code&gt;, &lt;code&gt;esc&lt;/code&gt;, or &lt;code&gt;Ctrl-C&lt;/code&gt; to exit&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;t&lt;/code&gt; to add a task&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;l&lt;/code&gt; to add a task list&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;d&lt;/code&gt; to delete selected tasks&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;These visuals helped us see that larceny was the most common crime, especially in the afternoon, and that violent crimes like robbery spiked slightly at night.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/crime-analysis/graph1.png&#34; alt=&#34;stacked-bar-charts&#34;&gt;&lt;/p&gt;
-&lt;h1 id=&#34;modeling-and-analysis&#34;&gt;Modeling and Analysis&lt;/h1&gt;
-&lt;p&gt;We used statistical and machine learning models to dig deeper:&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;File-Based Sessions (Planned)&lt;/strong&gt;:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Ridge Regression: I helped analyze how crime counts varied by hour across Tucson’s police divisions (East, West, South, Midtown). This showed crime generally increases throughout the day, with South Division having the strongest trend.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Random Forest and Logistic Regression: We predicted whether a ward had high crime based on income and streetlight counts. I worked on scaling the data and evaluating model performance using metrics like accuracy and F1-score. The Random Forest model performed better, with 97% accuracy!&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;OLS Regression: We tested how income and streetlights predict crime counts. I contributed to interpreting the results, which showed that lower-income areas had higher crime rates, but more streetlights were linked to higher crime (likely because they’re placed in high-crime areas).&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;JSON/SQLite-based state management, similar to session handling in TMUX&lt;/li&gt;
+&lt;li&gt;Launch from any terminal context into a specified session&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;/crime-analysis/ridge.png&#34; alt=&#34;ridge-regression&#34;&gt;&lt;/p&gt;
-&lt;h1 id=&#34;key-findings&#34;&gt;Key Findings&lt;/h1&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cross-Platform Support (Planned)&lt;/strong&gt;:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Crime and Income: Lower-income neighborhoods, especially in Wards 3 and 5, had higher crime rates, supporting our first hypothesis. The OLS regression showed a significant negative relationship between median income and crime counts.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Streetlights and Crime: Surprisingly, areas with more streetlights had higher crime rates, which didn’t support our second hypothesis. This suggests streetlights are often installed in response to high crime rather than preventing it.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Crime Patterns: Larceny was the top crime across all wards, peaking in the afternoon. Violent crimes were more common at night but less frequent overall.&lt;/p&gt;
+&lt;li&gt;Download a platform-specific executable and run from anywhere in the terminal&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;/crime-analysis/3dgraph.png&#34; alt=&#34;3dmodel&#34;&gt;&lt;/p&gt;
-&lt;h1 id=&#34;what-i-learned&#34;&gt;What I Learned&lt;/h1&gt;
-&lt;p&gt;This project was a huge learning experience for me:&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>PyScrape</title>
+      <link>/projects/pyscrape/</link>
+      <pubDate>Thu, 29 May 2025 11:32:21 -0700</pubDate>
+      
+      <guid>/projects/pyscrape/</guid>
+      <description>&lt;h2 id=&#34;related-content&#34;&gt;Related Content&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Technical Skills: I got hands-on with Python libraries like pandas, seaborn, matplotlib, scikit-learn, and statsmodels. I also learned to work with geospatial data using geopandas.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Problem-Solving: Cleaning messy data and merging datasets taught me how to think critically about data quality and structure.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Teamwork: Collaborating with my teammates helped me improve my communication and project management skills.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Ethical Considerations: We discussed how our analysis could be misinterpreted (e.g., reinforcing stereotypes about low-income areas). This made me more aware of the ethical side of data science.&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/nathantebbs/pyscrape&#34;&gt;Source Code&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h2 id=&#34;about-pyscrape&#34;&gt;About PyScrape&lt;/h2&gt;
+&lt;p&gt;As a Computer Science student at the University of Arizona, I often found myself navigating course websites and manually downloading content—an inconvenient process that took me out of the terminal environment I preferred working in.&lt;/p&gt;
+&lt;p&gt;To streamline this task, I began developing &lt;strong&gt;PyScrape&lt;/strong&gt;, a command-line tool for downloading static content from static websites.&lt;/p&gt;
+&lt;h2 id=&#34;usage&#34;&gt;Usage&lt;/h2&gt;
+&lt;p&gt;PyScrape is currently a work in progress. At this stage, it supports downloading PDFs from a given webpage. Support for additional file types such as DOCX documents, images, and presentations is planned for future releases, as the project continues to evolve.&lt;/p&gt;</description>
+      <content>&lt;h2 id=&#34;related-content&#34;&gt;Related Content&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/nathantebbs/pyscrape&#34;&gt;Source Code&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;about-pyscrape&#34;&gt;About PyScrape&lt;/h2&gt;
+&lt;p&gt;As a Computer Science student at the University of Arizona, I often found myself navigating course websites and manually downloading content—an inconvenient process that took me out of the terminal environment I preferred working in.&lt;/p&gt;
+&lt;p&gt;To streamline this task, I began developing &lt;strong&gt;PyScrape&lt;/strong&gt;, a command-line tool for downloading static content from static websites.&lt;/p&gt;
+&lt;h2 id=&#34;usage&#34;&gt;Usage&lt;/h2&gt;
+&lt;p&gt;PyScrape is currently a work in progress. At this stage, it supports downloading PDFs from a given webpage. Support for additional file types such as DOCX documents, images, and presentations is planned for future releases, as the project continues to evolve.&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>Tucson Crime Analysis</title>
+      <link>/projects/tucson-crime-analysis/</link>
+      <pubDate>Thu, 29 May 2025 09:52:50 -0700</pubDate>
+      
+      <guid>/projects/tucson-crime-analysis/</guid>
+      <description>&lt;h2 id=&#34;related-content&#34;&gt;Related Content&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;/posts/crime-data-analysis/&#34;&gt;Blog Post&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/nathantebbs/tucson-crime-analysis&#34;&gt;Source Code&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/tucson-crime-analysis.pdf&#34;&gt;Formal Report&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;about-this-project&#34;&gt;About This Project&lt;/h2&gt;
+&lt;p&gt;The tools and techniques required for conducting ethical and effective data analysis on real-world datasets are invaluable. To strengthen these skills, I collaborated with two peers from the University of Arizona to analyze multiple public datasets from the City of Tucson.&lt;/p&gt;
+&lt;h2 id=&#34;datasets&#34;&gt;Datasets&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://drive.google.com/file/d/161iT39q-IjdAwfS4nYs8reUbW9VMtub1/view?usp=drive_link&#34;&gt;Tucson Police Reported Crimes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://drive.google.com/file/d/1bJnk0YaQ8xNQAeIJLMWA87VILOG2tEsl/view?usp=drive_link&#34;&gt;Tucson Police Arrests&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://drive.google.com/file/d/1PWVC5zM-AffD-WDhN-9h5rAeCRRMRtac/view?usp=drive_link&#34;&gt;City of Tucson Streetlight Locations&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://drive.google.com/file/d/1_Ys0zVHxuI-XVIq5UpbJJW0Y7Lf0_rPA/view?usp=drive_link&#34;&gt;Tucson Neighborhood Income&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;findings&#34;&gt;Findings&lt;/h2&gt;
+&lt;p&gt;We found that lower-income neighborhoods—particularly in Wards 3 and 5—experience higher rates of theft and violent crime, supporting the link between income inequality and crime. However, the presence of streetlights did not correspond with reduced crime rates. In fact, streetlights were more common in high-crime areas, suggesting they are likely installed in response to crime rather than as a deterrent. Machine learning models, especially Random Forest, were effective in predicting high-crime areas, but the findings also raise ethical concerns about over-policing and data bias. These concerns underscore the importance of thoughtful, equitable policy interventions.&lt;/p&gt;</description>
+      <content>&lt;h2 id=&#34;related-content&#34;&gt;Related Content&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;/posts/crime-data-analysis/&#34;&gt;Blog Post&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/nathantebbs/tucson-crime-analysis&#34;&gt;Source Code&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/tucson-crime-analysis.pdf&#34;&gt;Formal Report&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;about-this-project&#34;&gt;About This Project&lt;/h2&gt;
+&lt;p&gt;The tools and techniques required for conducting ethical and effective data analysis on real-world datasets are invaluable. To strengthen these skills, I collaborated with two peers from the University of Arizona to analyze multiple public datasets from the City of Tucson.&lt;/p&gt;
+&lt;h2 id=&#34;datasets&#34;&gt;Datasets&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://drive.google.com/file/d/161iT39q-IjdAwfS4nYs8reUbW9VMtub1/view?usp=drive_link&#34;&gt;Tucson Police Reported Crimes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://drive.google.com/file/d/1bJnk0YaQ8xNQAeIJLMWA87VILOG2tEsl/view?usp=drive_link&#34;&gt;Tucson Police Arrests&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://drive.google.com/file/d/1PWVC5zM-AffD-WDhN-9h5rAeCRRMRtac/view?usp=drive_link&#34;&gt;City of Tucson Streetlight Locations&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://drive.google.com/file/d/1_Ys0zVHxuI-XVIq5UpbJJW0Y7Lf0_rPA/view?usp=drive_link&#34;&gt;Tucson Neighborhood Income&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;findings&#34;&gt;Findings&lt;/h2&gt;
+&lt;p&gt;We found that lower-income neighborhoods—particularly in Wards 3 and 5—experience higher rates of theft and violent crime, supporting the link between income inequality and crime. However, the presence of streetlights did not correspond with reduced crime rates. In fact, streetlights were more common in high-crime areas, suggesting they are likely installed in response to crime rather than as a deterrent. Machine learning models, especially Random Forest, were effective in predicting high-crime areas, but the findings also raise ethical concerns about over-policing and data bias. These concerns underscore the importance of thoughtful, equitable policy interventions.&lt;/p&gt;
 </content>
     </item>
     
