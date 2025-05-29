@@ -5,7 +5,7 @@ author = ""
 authorTwitter = "" #do not include @
 cover = ""
 coverCaption = ""
-tags = ["updates"]
+tags = ["post"]
 keywords = ["", ""]
 description = ""
 showFullContent = false
@@ -14,10 +14,13 @@ hideComments = false
 color = "" #color from the theme settings
 +++
 
-# How to use this website
+## How to Use This Website
 
-Hello, this website is the hub for all information that you would like to know about me. To know more about my journey so far checkout the `About` page. The `Projects` page is a showcase for all my completed projects so far. To see my works in progress, checkout my [GitHub](https://github.com/nathantebbs).
+Welcome! This site serves as the central hub for everything you'd like to know about me. To learn more about my journey so far, check out the `About` page. The `Projects` page highlights the work I've completed, and for ongoing projects and experiments, you can follow along on my [GitHub](https://github.com/nathantebbs).
 
-# Plans going forward
+The home page features my blog posts—less formal entries where I dive into projects, topics that interest me, and occasional announcements.
 
-Over the next few months expect a lot of changes to occur here! I am still working out the specifics of the look, feeling, and functionality of this website. Luckily, my courseload has lightened up over the summer so I am going to be putting most of my time and energy into my personal projects, including nathantebbs.com. So check back periodically to see what I've been getting up to.
+## Plans Going Forward
+
+Expect to see lots of changes over the next few months! I'm still refining the look, feel, and functionality of this site. With a lighter course load over the summer, I’m focusing more on personal projects—especially `nathantebbs.com`. Be sure to check back periodically to see what's new!
+

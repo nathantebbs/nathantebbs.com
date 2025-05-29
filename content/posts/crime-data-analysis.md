@@ -5,7 +5,7 @@ author = "Nathan Tebbs, Andrew Hicks, Cole Hageman"
 authorTwitter = "" #do not include @
 cover = ""
 coverCaption = ""
-tags = ["updates", "blog", "project"]
+tags = ["post"]
 keywords = ["", ""]
 description = ""
 showFullContent = false
@@ -15,7 +15,7 @@ color = "" #color from the theme settings
 +++
 
 # Preface
-This blog post covers my part in a group data analysis project. If you would like the formal report detailing the process, findings, and conclusions complete with images and references you can find that [here](/tucson-crime-analysis.pdf).
+This blog post covers my part in a group data analysis project. If you would like the formal report detailing the process, findings, and conclusions complete with images and references you can find that [here](/tucson-crime-analysis.pdf). Additionally, The official project showcase for this blog post can be found at in the [Projects](/projects) page.
 
 
 # What Was the Project About?

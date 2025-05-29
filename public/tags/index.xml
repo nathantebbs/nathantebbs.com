@@ -6,13 +6,13 @@
     <description>Recent content in Tags on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 27 May 2025 22:51:52 -0700</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 29 May 2025 11:50:58 -0700</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Blog</title>
-      <link>/tags/blog/</link>
-      <pubDate>Tue, 27 May 2025 22:51:52 -0700</pubDate>
+      <title>In-Progress</title>
+      <link>/tags/in-progress/</link>
+      <pubDate>Thu, 29 May 2025 11:50:58 -0700</pubDate>
       
-      <guid>/tags/blog/</guid>
+      <guid>/tags/in-progress/</guid>
       <description></description>
       <content></content>
     </item>
@@ -20,7 +20,7 @@
     <item>
       <title>Project</title>
       <link>/tags/project/</link>
-      <pubDate>Tue, 27 May 2025 22:51:52 -0700</pubDate>
+      <pubDate>Thu, 29 May 2025 11:50:58 -0700</pubDate>
       
       <guid>/tags/project/</guid>
       <description></description>
@@ -28,11 +28,41 @@
     </item>
     
     <item>
-      <title>Updates</title>
-      <link>/tags/updates/</link>
+      <title>V0.0.1</title>
+      <link>/tags/v0.0.1/</link>
+      <pubDate>Thu, 29 May 2025 11:50:58 -0700</pubDate>
+      
+      <guid>/tags/v0.0.1/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
+      <title>Pre-Release</title>
+      <link>/tags/pre-release/</link>
+      <pubDate>Thu, 29 May 2025 11:32:21 -0700</pubDate>
+      
+      <guid>/tags/pre-release/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
+      <title>Finished</title>
+      <link>/tags/finished/</link>
+      <pubDate>Thu, 29 May 2025 09:52:50 -0700</pubDate>
+      
+      <guid>/tags/finished/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
+      <title>Post</title>
+      <link>/tags/post/</link>
       <pubDate>Tue, 27 May 2025 22:51:52 -0700</pubDate>
       
-      <guid>/tags/updates/</guid>
+      <guid>/tags/post/</guid>
       <description></description>
       <content></content>
     </item>
