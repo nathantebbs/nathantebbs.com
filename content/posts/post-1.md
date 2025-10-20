@@ -205,3 +205,4 @@ to be lightweight but not portable, that is I won't be installing this on any VM
 -   [Gruber Darker (Theme)](https://github.com/rexim/gruber-darker-theme)
 -   [evil-mode](https://github.com/emacs-evil/evil)
 -   [straight.el (Package Manager)](https://github.com/radian-software/straight.el)
+-   [Doom Emacs (IDE Alternative)](https://github.com/doomemacs/doomemacs)
