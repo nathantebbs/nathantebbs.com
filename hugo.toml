@@ -1,118 +1,64 @@
-baseurl = "/"
-languageCode = "en-us"
-# Add it only if you keep the theme in the `themes` directory.
-# Remove it if you use the theme as a remote Hugo Module.
-theme = "re-terminal"
-pagination.pagerSize = 5
+baseURL = 'https://nathantebbs.com'
+languageCode = 'en-us'
+title = 'Nathan Tebbs'
+theme = 'typo'
 
 [params]
-  # dir name of your main content (default is `content/posts`).
-  # the list of set content will show up on your index page (baseurl).
-  contentTypeName = "posts"
+description = "A Tech Blog"
 
-  # ["orange", "blue", "red", "green", "pink", "paper"]
-  themeColor = "green"
+customCSS = ["css/custom.css"]
 
-  # if you set this to 0, only submenu trigger will be visible
-  showMenuItems = 2
+theme = 'auto'
+colorPallete = 'default'
+hideHeader = false
 
-  # show selector to switch language
-  showLanguageSelector = false
+homeIntroTitle = 'Hi!'
+homeIntroContent = """
+I am a Computer Science student at University of Arizona in Tucson, Arizona, 
+with a strong background in cloud computing and python. Solving complex
+problems is my passion, and my interests include databases, developer tools,
+computer networking, and C/C++ programming.
+"""
 
-  # set theme to full screen width
-  fullWidthTheme = false
+homeCollectionTitle = 'Posts'
+homeCollection = 'posts'
 
-  # center theme with default width
-  centerTheme = true
+paginationSize = 100
+listSummaries = false
+listDateFormat = '2 Jan 2006'
 
-  # if your resource directory contains an image called `cover.(jpg|png|webp)`,
-  # then the file will be used as a cover automatically.
-  # With this option you don't have to put the `cover` param in a front-matter.
-  autoCover = true
+# Breadcrumbs
+[params.breadcrumbs]
+enabled = true
+showCurrentPage = true
+home = "Home"
 
-  # set post to show the last updated
-  # If you use git, you can set `enableGitInfo` to `true` and then post will automatically get the last updated
-  showLastUpdated = false
+# Social icons
+[[params.social]]
+name = "linkedin"
+url = "https://www.linkedin.com/in/ntebbs/"
 
-  # set a custom favicon (default is a `themeColor` square)
-  # favicon = "favicon.ico"
+[[params.social]]
+name = "github"
+url = "https://github.com/nathantebbs"
 
-  # Provide a string as a prefix for the last update date. By default, it looks like this: 2020-xx-xx [Updated: 2020-xx-xx] :: Author
-  # updatedDatePrefix = "Updated"
+# Main menu
+[[params.menu]]
+name = "home"
+url = "/"
 
-  # set all headings to their default size (depending on browser settings)
-  # oneHeadingSize = true # default
+[[params.menu]]
+name = "posts"
+url = "/posts"
 
-  # whether to show a page's estimated reading time
-  # readingTime = false # default
+[[params.menu]]
+name = "about"
+url = "/about"
 
-  # whether to show a table of contents
-  # can be overridden in a page's front-matter
-  # Toc = true # default
+# Syntax highlighting on code blocks.
+[markup]
+[markup.highligh]
+stle = 'algol'
 
-  # set title for the table of contents
-  # can be overridden in a page's front-matter
-  # TocTitle = "Table of Contents" # default
-
-
-  # you can set a banner on the top of the page with a call to action
-  # defaults: dismissible = false; URL is optional
-  # [params.banner]
-  # dismissible = false
-  # text = "Check it out on GitHub"
-  # url = "https://github.com/mirus-ua/hugo-theme-re-terminal"
-
-
-
-[params.twitter]
-  # set Twitter handles for Twitter cards
-  # see https://developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started#card-and-content-attribution
-  # do not include @
-  creator = ""
-  site = ""
-
-[languages]
-  [languages.en.params]
-    languageName = "English"
-    title = "re-Terminal"
-    subtitle = "A simple, retro theme for Hugo"
-    owner = ""
-    keywords = ""
-    copyright = ""
-    menuMore = "Show more"
-    readMore = "Read more"
-    readOtherPosts = "Read other posts"
-    newerPosts = "Newer posts"
-    olderPosts = "Older posts"
-    missingContentMessage = "Page not found..."
-    missingBackButtonLabel = "Back to home page"
-    minuteReadingTime = "min read"
-    words = "words"
-
-    [languages.en.params.logo]
-      logoText = "nathantebbs.com"
-      logoHomeLink = "/"
-
-    [languages.en.menu]
-      # Submenus is available since v2.1.0
-      # [[languages.en.menu.main]]
-      #   identifier = "submenuParent"
-      #   name = "Submenu"
-      # [[languages.en.menu.main]]
-      #   parent = "submenuParent"
-      #   identifier = "anItem"
-      #   name = "AnItem"
-      [[languages.en.menu.main]]
-        identifier = "about"
-        name = "About"
-        url = "/about"
-      [[languages.en.menu.main]]
-        identifier = "projects"
-        name = "Projects"
-        url = "/projects"
-
-[module]
-  # In case you would like to make changes to the theme and keep it locally in you repository,
-  # uncomment the line below (and correct the local path if necessary).
-  # --
-  replacements = "github.com/mirus-ua/hugo-theme-re-terminal -> themes/re-terminal"
+[markup.goldmark.renderer]
+unsafe = true

@@ -1,0 +1,72 @@
+/* ==============================
+   About Page Image Stack
+   ============================== */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: top;
+    justify-content: space-between;
+    gap: 0.25rem;
+    margin: 3rem;
+}
+
+.text-side {
+    flex: 1;
+    text-align: center
+    max-width: 50%;
+}
+
+.about-image-stack {
+  display: grid;
+  position: relative;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 10px;
+  flex: 1;
+  max-width: 45%;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem auto;
+}
+
+.image-stack {
+    display: flex;
+    position: relative;
+    flex: 1;
+    max-width: 50%;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem auto;
+}
+
+
+
+.about-image-stack img {
+  width: 130px;
+  min-width: 110px;
+  height: 130px;
+  min-height: 110px;
+  object-fit: cover;
+  border-radius: 25%;
+  border: 3px solid #181818;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ==============================
+   Responsive adjustments
+   ============================== */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column; /* stack vertically */
+    text-align: center;
+  }
+
+  .about-image-stack {
+    margin-bottom: 1.5rem; /* space before text */
+    transform: none;
+  }
+}
