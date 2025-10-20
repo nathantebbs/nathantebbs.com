@@ -41,7 +41,7 @@
 <meta property="og:url" content="http://localhost:1313/posts/post-1/">
   <meta property="og:site_name" content="Nathan Tebbs">
   <meta property="og:title" content="Migrating from Neovim to Emacs">
-  <meta property="og:description" content="Table of Contents Background Emacs Configuration Basic U/I &#43; Basic Options Keybindings Package Setup Background # Since starting my journey into discovering different development environments within my personal linux setup, and attempting to make them practical either for Computer Science school work or just personal projects has proven an effecient procrastination technique. However, I love text editors, and the feeling of customizing a neovim plugin for the first time is wonderful. However, the ecosystem surround neovim and the pace at which the plugins evolve I quickly became exausted trying to keep up after being out of touch with the editor for times. Around late last year I discovered Emacs, first because of org-mode, then later falling in love with the GUI editor first PDE, and evil-mode.">
+  <meta property="og:description" content="Table of Contents Background Emacs Configuration Basic U/I &#43; Basic Options Keybindings Package Setup Sources Background # Since starting my journey into discovering different development environments within my personal linux setup, and attempting to make them practical either for Computer Science school work or just personal projects has proven an effecient procrastination technique. However, I love text editors, and the feeling of customizing a neovim plugin for the first time is wonderful. However, the ecosystem surround neovim and the pace at which the plugins evolve I quickly became exausted trying to keep up after being out of touch with the editor for times. Around late last year I discovered Emacs, first because of org-mode, then later falling in love with the GUI editor first PDE, and evil-mode.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -171,6 +171,7 @@
 <li><a href="#package-setup">Package Setup</a></li>
 </ul>
 </li>
+<li><a href="#sources">Sources</a></li>
 </ul>
 </div>
 <!--endtoc-->
@@ -233,7 +234,7 @@ breaks the reason why you choose an editor to. Basically, I don&rsquo;t want to 
 </span></span><span style="display:flex;"><span>(setq auto-save-default <span style="color:#66d9ef">nil</span>) <span style="color:#75715e">;; No autosave files</span>
 </span></span><span style="display:flex;"><span>(setq backup-directory-alist <span style="color:#f92672">&#39;</span>((<span style="color:#e6db74">&#34;.*&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;~/.Trash&#34;</span>)))
 </span></span></code></pre></div><p>When you first start Emacs, there are a lot of simple U/I options that should be off by default
-for any competant user. Below we remove clunky things like window decorations, enable line numbers, autopairs, which-key
+for any competant user. Above we remove clunky things like window decorations, enable line numbers, autopairs, which-key
 org-agenda files, &lt;C-u&gt; for up scroll, and no more annoying backup~ files.</p>
 <h3 class="heading" id="keybindings">
   Keybindings
@@ -249,7 +250,9 @@ org-agenda files, &lt;C-u&gt; for up scroll, and no more annoying backup~ files.
 </span></span><span style="display:flex;"><span>(global-set-key (kbd <span style="color:#e6db74">&#34;C-x e&#34;</span>) <span style="color:#e6db74">&#39;eval-buffer</span>)
 </span></span><span style="display:flex;"><span>(global-set-key (kbd <span style="color:#e6db74">&#34;C-c a&#34;</span>) <span style="color:#e6db74">&#39;org-agenda-list</span>)
 </span></span><span style="display:flex;"><span>(global-set-key (kbd <span style="color:#e6db74">&#34;C-c o&#34;</span>) <span style="color:#f92672">&#39;</span>(lambda () (interactive) (find-file <span style="color:#e6db74">&#34;~/org/todo.org&#34;</span>)))
-</span></span></code></pre></div><h3 class="heading" id="package-setup">
+</span></span></code></pre></div><p>These are just the basic keybindings that I have set after about a week of playing with this config. The first place I might
+expand beyond this is probably looking more into magit, or some better org mode integration.</p>
+<h3 class="heading" id="package-setup">
   Package Setup
   <a class="anchor" href="#package-setup">#</a>
 </h3>
@@ -274,7 +277,8 @@ org-agenda files, &lt;C-u&gt; for up scroll, and no more annoying backup~ files.
 </span></span><span style="display:flex;"><span>      (<span style="color:#a6e22e">goto-char</span> (<span style="color:#a6e22e">point-max</span>))
 </span></span><span style="display:flex;"><span>      (eval-print-last-sexp)))
 </span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">load</span> bootstrap-file <span style="color:#66d9ef">nil</span> <span style="color:#e6db74">&#39;nomessage</span>))
-</span></span></code></pre></div><h4 class="heading" id="installing-packages-via-use-package">
+</span></span></code></pre></div><p>This is the basic bootstrap for straight.el which we will use to install external packages below.</p>
+<h4 class="heading" id="installing-packages-via-use-package">
   Installing packages via &lsquo;use-package&rsquo;
   <a class="anchor" href="#installing-packages-via-use-package">#</a>
 </h4>
@@ -330,7 +334,22 @@ org-agenda files, &lt;C-u&gt; for up scroll, and no more annoying backup~ files.
 </span></span><span style="display:flex;"><span>(use-package ox-hugo
 </span></span><span style="display:flex;"><span>  :straight <span style="color:#66d9ef">t</span>
 </span></span><span style="display:flex;"><span>  :after ox)
-</span></span></code></pre></div>
+</span></span></code></pre></div><p>Most of these packages are up to personal preference for my goals with my own config. Notebly however I have chosen to use
+an external theme as apposed to a built in themes. The main reasoning I have behind this is because my emacs config is designed
+to be lightweight but not portable, that is I won&rsquo;t be installing this on any VMs. The sipler option to install a theme:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span><span style="color:#75715e">;; use M-x describe-theme RET</span>
+</span></span><span style="display:flex;"><span>(load-theme <span style="color:#e6db74">&#39;modus-vivendi</span>)
+</span></span></code></pre></div><h2 class="heading" id="sources">
+  Sources
+  <a class="anchor" href="#sources">#</a>
+</h2>
+<ul>
+<li><a href="https://www.youtube.com/@LooseLeafLearning">Loose Leaf Learning (YT)</a></li>
+<li><a href="https://github.com/rexim/gruber-darker-theme">Gruber Darker (Theme)</a></li>
+<li><a href="https://github.com/emacs-evil/evil">evil-mode</a></li>
+<li><a href="https://github.com/radian-software/straight.el">straight.el (Package Manager)</a></li>
+</ul>
+
     </div>
   </article>
 
@@ -340,35 +359,6 @@ org-agenda files, &lt;C-u&gt; for up scroll, and no more annoying backup~ files.
 
   
   
-
-<div class="single-pagination">
-    <hr />
-
-    <div class="flexnowrap">
-
-        <div class="single-pagination-prev">
-            
-        </div>
-
-        <div class="single-pagination-next">
-            
-            <div class="single-pagination-container-next">
-                <div class="single-pagination-text">
-                    <a href="/posts/post-2/">
-                        Exploring Raylib in Zig
-                    </a>
-                </div>
-                <div class="single-pagination-text">→</div>
-            </div>
-            
-        </div>
-
-    </div>
-
-    <hr />
-</div>
-
-
 
   
 

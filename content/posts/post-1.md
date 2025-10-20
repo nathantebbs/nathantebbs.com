@@ -13,6 +13,7 @@ draft = false
     - [Basic U/I + Basic Options](#basic-u-i-plus-basic-options)
     - [Keybindings](#keybindings)
     - [Package Setup](#package-setup)
+- [Sources](#sources)
 
 </div>
 <!--endtoc-->
@@ -80,7 +81,7 @@ breaks the reason why you choose an editor to. Basically, I don't want to turn E
 ```
 
 When you first start Emacs, there are a lot of simple U/I options that should be off by default
-for any competant user. Below we remove clunky things like window decorations, enable line numbers, autopairs, which-key
+for any competant user. Above we remove clunky things like window decorations, enable line numbers, autopairs, which-key
 org-agenda files, &lt;C-u&gt; for up scroll, and no more annoying backup~ files.
 
 
@@ -98,6 +99,9 @@ org-agenda files, &lt;C-u&gt; for up scroll, and no more annoying backup~ files.
 (global-set-key (kbd "C-c a") 'org-agenda-list)
 (global-set-key (kbd "C-c o") '(lambda () (interactive) (find-file "~/org/todo.org")))
 ```
+
+These are just the basic keybindings that I have set after about a week of playing with this config. The first place I might
+expand beyond this is probably looking more into magit, or some better org mode integration.
 
 
 ### Package Setup {#package-setup}
@@ -124,6 +128,8 @@ org-agenda files, &lt;C-u&gt; for up scroll, and no more annoying backup~ files.
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 ```
+
+This is the basic bootstrap for straight.el which we will use to install external packages below.
 
 
 #### Installing packages via 'use-package' {#installing-packages-via-use-package}
@@ -182,3 +188,20 @@ org-agenda files, &lt;C-u&gt; for up scroll, and no more annoying backup~ files.
   :straight t
   :after ox)
 ```
+
+Most of these packages are up to personal preference for my goals with my own config. Notebly however I have chosen to use
+an external theme as apposed to a built in themes. The main reasoning I have behind this is because my emacs config is designed
+to be lightweight but not portable, that is I won't be installing this on any VMs. The sipler option to install a theme:
+
+```elisp
+;; use M-x describe-theme RET
+(load-theme 'modus-vivendi)
+```
+
+
+## Sources {#sources}
+
+-   [Loose Leaf Learning (YT)](https://www.youtube.com/@LooseLeafLearning)
+-   [Gruber Darker (Theme)](https://github.com/rexim/gruber-darker-theme)
+-   [evil-mode](https://github.com/emacs-evil/evil)
+-   [straight.el (Package Manager)](https://github.com/radian-software/straight.el)

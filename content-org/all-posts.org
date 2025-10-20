@@ -27,13 +27,14 @@
 
 
 
-* Post 1
+* DONE Post 1
 :PROPERTIES:
 :EXPORT_HUGO_SECTION: /posts/
 :EXPORT_FILE_NAME: post-1
 :EXPORT_DATE: <2025-09-17 Wed>
 :EXPORT_TITLE: Migrating from Neovim to Emacs
 :EXPORT_OPTIONS: toc:2
+:EXPORT_HUGO_DRAFT: true
 :END:
 
 #+begin_export html
@@ -67,8 +68,6 @@ breaks the reason why you choose an editor to. Basically, I don't want to turn E
 ** Emacs Configuration
 
 *** Basic U/I + Basic Options
-
-
 
 #+BEGIN_SRC elisp
   ;; Remove window decorations
@@ -121,6 +120,9 @@ org-agenda files, <C-u> for up scroll, and no more annoying backup~ files.
 
 #+END_SRC
 
+These are just the basic keybindings that I have set after about a week of playing with this config. The first place I might
+expand beyond this is probably looking more into magit, or some better org mode integration.
+
 *** Package Setup
 
 **** Bootstrapping straight.el
@@ -145,6 +147,8 @@ org-agenda files, <C-u> for up scroll, and no more annoying backup~ files.
     (load bootstrap-file nil 'nomessage))
 
 #+END_SRC
+
+This is the basic bootstrap for straight.el which we will use to install external packages below.
 
 **** Installing packages via 'use-package'
 
@@ -203,7 +207,22 @@ org-agenda files, <C-u> for up scroll, and no more annoying backup~ files.
     :after ox)
 #+END_SRC
 
-* Post 2
+Most of these packages are up to personal preference for my goals with my own config. Notebly however I have chosen to use
+an external theme as apposed to a built in themes. The main reasoning I have behind this is because my emacs config is designed
+to be lightweight but not portable, that is I won't be installing this on any VMs. The sipler option to install a theme:
+
+#+BEGIN_SRC elisp
+  ;; use M-x describe-theme RET 
+  (load-theme 'modus-vivendi)
+#+END_SRC
+
+** Sources
+- [[https://www.youtube.com/@LooseLeafLearning][Loose Leaf Learning (YT)]]
+- [[https://github.com/rexim/gruber-darker-theme][Gruber Darker (Theme)]]
+- [[https://github.com/emacs-evil/evil][evil-mode]]
+- [[https://github.com/radian-software/straight.el][straight.el (Package Manager)]]
+  
+* TODO Post 2
 :PROPERTIES:
 :EXPORT_HUGO_SECTION: /posts/
 :EXPORT_FILE_NAME: post-2

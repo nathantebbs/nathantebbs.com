@@ -1,7 +1,7 @@
 +++
 title = "Exploring Raylib in Zig"
 date = 2025-10-10T00:00:00-07:00
-draft = false
+draft = true
 +++
 
 **This post is currently testing a simple "Hello, World" program in C.**
