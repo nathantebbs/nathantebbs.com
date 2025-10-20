@@ -1,6 +1,12 @@
-/* ==============================
-   About Page Image Stack
-   ============================== */
+
+:root {
+    --main-width: 1280px; 
+}
+
+body {
+    font-size: 1.35rem;
+    letter-spacing: 0.02e;
+}
 
 .container {
     display: flex;
@@ -56,17 +62,14 @@
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* ==============================
-   Responsive adjustments
-   ============================== */
 @media (max-width: 768px) {
   .container {
-    flex-direction: column; /* stack vertically */
+    flex-direction: column; 
     text-align: center;
   }
 
   .about-image-stack {
-    margin-bottom: 1.5rem; /* space before text */
+    margin-bottom: 1.5rem; 
     transform: none;
   }
 }

@@ -1,18 +1,25 @@
 +++
 title = "Migrating from Neovim to Emacs"
 date = 2025-09-17T00:00:00-07:00
+tags = ["Config"]
 draft = false
+summary = "A reflection on moving from a complex Neovim setup to a simpler, more intentional Emacs configuration that balances customization with minimalism."
 +++
 
 <div class="ox-hugo-toc toc">
 
 <div class="heading">Table of Contents</div>
 
+- [Quick link(s):](#quick-link--s)
 - [Background](#background)
+    - [Discovering Alternatives](#discovering-alternatives)
+    - [Return to Minimalsim](#return-to-minimalsim)
 - [Emacs Configuration](#emacs-configuration)
     - [Basic U/I + Basic Options](#basic-u-i-plus-basic-options)
     - [Keybindings](#keybindings)
     - [Package Setup](#package-setup)
+    - [Installing packages via 'use-package'](#installing-packages-via-use-package)
+    - [Theme](#theme)
 - [Sources](#sources)
 
 </div>
@@ -24,32 +31,52 @@ draft = false
 </div>
 
 
+## Quick link(s): {#quick-link--s}
+
+-   [.emacs](https://raw.githubusercontent.com/nathantebbs/dotfiles/refs/heads/main/.emacs)
+-   [nvim/](https://github.com/nathantebbs/dotfiles/tree/main/nvim)
+
+
 ## Background {#background}
 
 Since starting my journey into discovering different development environments within my personal linux setup,
-and attempting to make them practical either for Computer Science school work or just personal projects has proven
-an effecient procrastination technique. However, I love text editors, and the feeling of customizing a neovim plugin for
-the first time is wonderful. However, the ecosystem surround neovim and the pace at which the plugins evolve I quickly became
-exausted trying to keep up after being out of touch with the editor for times. Around late last year I discovered Emacs, first
-because of [org-mode](https://www.orgmode.org), then later falling in love with the GUI editor first PDE, and [evil-mode](https://github.com/emacs-evil/evil).
+attempting to make them practical either for Computer Science school work or just personal projects has proven
+an effecient procrastination technique. However, I love text editors, and the feeling of customizing a Neovim plugin for
+the first time is wonderful. However, the ecosystem surround Neovim and the pace at which the plugins evolve I quickly became
+exausted trying to keep up after being out of touch with the editor for times.
+
+
+### Discovering Alternatives {#discovering-alternatives}
+
+Around late last year I discovered Emacs, first because of [org-mode](https://www.orgmode.org), then later falling in love with the GUI editor first PDE, and [evil-mode](https://github.com/emacs-evil/evil).
 
 I started out using an out-of-the-box distrobution of evil-mode Emacs called [doom-emacs](https://github.com/doomemacs/doomemacs). Doom provided a way to keep the lovely
-vim keybinds that have been baked into my brain while allowing me to use cool native Emacs features and plugins. Additionally,
-the utility for me to use neovim for text editing has shifted mainly to not provide IDE features. This was inspired by trying to
-edit some assignment code that I had secure copied into my univerities virtual machine. For fun, I decided to clone my neovim config
-and benefit from the LSP setup. However, after long download times and heavy lag I realized that I had entirely defeated the purpose
-of my light-weight text editor by giving it the resposibility of a full blown IDE. Furthermore, neovim has amazing stock featuers,
-and in the nightly branch now has a built-in package manager, which is quite intriguing.
+vim keybinds that have been baked into my brain while allowing me to use cool native Emacs features and plugins.
+
+Over time, the utility for me to use Neovim for text editing has shifted mainly to not provide IDE features. I was inspired
+by trying to edit some assignment code that I had secure copied into my univerities virtual machine. For fun, I decided
+to clone my Neovim config and benefit from the LSP setup. However, after long download times and heavy lag I realized that I had
+entirely defeated the purpose of my light-weight text editor by giving it the resposibility of a full blown IDE.
+
+That said, Neovim has amazing stock featuers, and in the nightly branch now has a built-in package manager. Which you can see
+in my Neovim config's [init.lua](https://github.com/nathantebbs/dotfiles/blob/main/nvim/init.lua#L17)
+
+
+### Return to Minimalsim {#return-to-minimalsim}
 
 After getting familiar with doom, I realized that I was loading 200 packages on startup, and I couldn't even tell you what half of
 them were. Also, doom comes with a lot of custom Emacs keybindings, and I love evil mode but trying remap all baseline functionality
-breaks the reason why you choose an editor to. Basically, I don't want to turn Emacs into Neo-vim, I just want hjkl.
+breaks the reason why you choose an editor to. Basically, I don't want to turn Emacs into Neovim, I just want hjkl.
 
 
 ## Emacs Configuration {#emacs-configuration}
 
 
 ### Basic U/I + Basic Options {#basic-u-i-plus-basic-options}
+
+When you first start Emacs, there are a lot of simple U/I options that should be off by default
+for any competant user. Below we remove clunky things like window decorations, enable line numbers, autopairs, which-key
+org-agenda files, &lt;C-u&gt; for up scroll, and no more annoying backup~ files.
 
 ```elisp
 ;; Remove window decorations
@@ -80,12 +107,11 @@ breaks the reason why you choose an editor to. Basically, I don't want to turn E
 (setq backup-directory-alist '((".*" . "~/.Trash")))
 ```
 
-When you first start Emacs, there are a lot of simple U/I options that should be off by default
-for any competant user. Above we remove clunky things like window decorations, enable line numbers, autopairs, which-key
-org-agenda files, &lt;C-u&gt; for up scroll, and no more annoying backup~ files.
-
 
 ### Keybindings {#keybindings}
+
+These are just the basic keybindings that I have set after about a week of playing with this config. The first place I might
+expand beyond this is probably looking more into magit, or some better org mode integration.
 
 ```elisp
 
@@ -100,14 +126,10 @@ org-agenda files, &lt;C-u&gt; for up scroll, and no more annoying backup~ files.
 (global-set-key (kbd "C-c o") '(lambda () (interactive) (find-file "~/org/todo.org")))
 ```
 
-These are just the basic keybindings that I have set after about a week of playing with this config. The first place I might
-expand beyond this is probably looking more into magit, or some better org mode integration.
-
 
 ### Package Setup {#package-setup}
 
-
-#### Bootstrapping straight.el {#bootstrapping-straight-dot-el}
+This is the basic bootstrap for straight.el which we will use to install external packages below.
 
 ```elisp
 
@@ -129,10 +151,10 @@ expand beyond this is probably looking more into magit, or some better org mode 
   (load bootstrap-file nil 'nomessage))
 ```
 
-This is the basic bootstrap for straight.el which we will use to install external packages below.
 
+### Installing packages via 'use-package' {#installing-packages-via-use-package}
 
-#### Installing packages via 'use-package' {#installing-packages-via-use-package}
+Most of these packages are up to personal preference for my goals with my own config.
 
 ```elisp
 
@@ -189,14 +211,25 @@ This is the basic bootstrap for straight.el which we will use to install externa
   :after ox)
 ```
 
-Most of these packages are up to personal preference for my goals with my own config. Notebly however I have chosen to use
-an external theme as apposed to a built in themes. The main reasoning I have behind this is because my emacs config is designed
-to be lightweight but not portable, that is I won't be installing this on any VMs. The sipler option to install a theme:
+
+### Theme {#theme}
+
+I have chosen to use an external theme as apposed to a built in themes. The main reasoning I have behind this is because
+my emacs config is designed to be lightweight but not portable, that is I won't be installing this on any VMs.
 
 ```elisp
-;; use M-x describe-theme RET
+;; Simple Option
+;; use M-x describe-theme RET to see available themes
 (load-theme 'modus-vivendi)
+
+;; Current Approach (using straight.el)
+(use-package gruber-darker-theme
+  :straight t
+  :config
+  (load-theme 'gruber-darker t))
 ```
+
+<img src="/images/emacs.png" alt="Final product of config in action with the colorscheme set">
 
 
 ## Sources {#sources}

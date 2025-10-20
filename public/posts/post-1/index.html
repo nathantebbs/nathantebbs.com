@@ -2,7 +2,7 @@
 <html lang="en-us"
   dir="ltr">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 
@@ -20,11 +20,11 @@
 
 
 
-<link rel="icon" type="image/ico" href="https://nathantebbs.com/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://nathantebbs.com/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://nathantebbs.com/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="192x192" href="https://nathantebbs.com/android-chrome-192x192.png">
-<link rel="apple-touch-icon" sizes="180x180" href="https://nathantebbs.com/apple-touch-icon.png">
+<link rel="icon" type="image/ico" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="http://localhost:1313/android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313/apple-touch-icon.png">
 
 <meta name="description" content=""/>
 
@@ -36,17 +36,18 @@
     
 </title>
 
-<link rel="canonical" href="https://nathantebbs.com/posts/post-1/"/>
+<link rel="canonical" href="http://localhost:1313/posts/post-1/"/>
 
-<meta property="og:url" content="https://nathantebbs.com/posts/post-1/">
+<meta property="og:url" content="http://localhost:1313/posts/post-1/">
   <meta property="og:site_name" content="Nathan Tebbs">
   <meta property="og:title" content="Migrating from Neovim to Emacs">
-  <meta property="og:description" content="Table of Contents Background Emacs Configuration Basic U/I &#43; Basic Options Keybindings Package Setup Sources Background # Since starting my journey into discovering different development environments within my personal linux setup, and attempting to make them practical either for Computer Science school work or just personal projects has proven an effecient procrastination technique. However, I love text editors, and the feeling of customizing a neovim plugin for the first time is wonderful. However, the ecosystem surround neovim and the pace at which the plugins evolve I quickly became exausted trying to keep up after being out of touch with the editor for times. Around late last year I discovered Emacs, first because of org-mode, then later falling in love with the GUI editor first PDE, and evil-mode.">
+  <meta property="og:description" content="A reflection on moving from a complex Neovim setup to a simpler, more intentional Emacs configuration that balances customization with minimalism.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-09-17T00:00:00-07:00">
     <meta property="article:modified_time" content="2025-09-17T00:00:00-07:00">
+    <meta property="article:tag" content="Config">
 
 
 
@@ -54,11 +55,7 @@
 
 
 
-<link rel="stylesheet" href="/assets/combined.min.13091bb547f5ba9d69df9bc0529673b21d99c82f395e30cb12d22840ce0ad767.css" media="all">
-
-
-
-
+<link rel="stylesheet" href="/assets/combined.min.757465a21cd128e1351aefdd56388c595ffa251f97344f13c86e8dcfe0899e91.css" media="all">
 
 
 
@@ -94,7 +91,7 @@
     
 
     <h1 class="header-title">
-        <a href="https://nathantebbs.com/">Nathan Tebbs</a>
+        <a href="http://localhost:1313/">Nathan Tebbs</a>
     </h1>
 
     <div class="header-menu">
@@ -150,6 +147,7 @@
     <header class="single-intro-container">
         
         <h1 class="single-title">Migrating from Neovim to Emacs</h1>
+        <p class="single-summary">A reflection on moving from a complex Neovim setup to a simpler, more intentional Emacs configuration that balances customization with minimalism.</p>
         
         <div class="single-subsummary">
           
@@ -167,12 +165,20 @@
       <div class="ox-hugo-toc toc">
 <div class="heading">Table of Contents</div>
 <ul>
-<li><a href="#background">Background</a></li>
+<li><a href="#quick-link--s">Quick link(s):</a></li>
+<li><a href="#background">Background</a>
+<ul>
+<li><a href="#discovering-alternatives">Discovering Alternatives</a></li>
+<li><a href="#return-to-minimalsim">Return to Minimalsim</a></li>
+</ul>
+</li>
 <li><a href="#emacs-configuration">Emacs Configuration</a>
 <ul>
 <li><a href="#basic-u-i-plus-basic-options">Basic U/I + Basic Options</a></li>
 <li><a href="#keybindings">Keybindings</a></li>
 <li><a href="#package-setup">Package Setup</a></li>
+<li><a href="#installing-packages-via-use-package">Installing packages via &lsquo;use-package&rsquo;</a></li>
+<li><a href="#theme">Theme</a></li>
 </ul>
 </li>
 <li><a href="#sources">Sources</a></li>
@@ -183,26 +189,43 @@
     <img src="/images/lazyvim1.png" alt="Lazy Neovim Distrobution">
     <img src="/images/doom1.png" alt="Doom Emacs Distrobution">
 </div>
+<h2 class="heading" id="quick-link--s">
+  Quick link(s):
+  <a class="anchor" href="#quick-link--s">#</a>
+</h2>
+<ul>
+<li><a href="https://raw.githubusercontent.com/nathantebbs/dotfiles/refs/heads/main/.emacs">.emacs</a></li>
+<li><a href="https://github.com/nathantebbs/dotfiles/tree/main/nvim">nvim/</a></li>
+</ul>
 <h2 class="heading" id="background">
   Background
   <a class="anchor" href="#background">#</a>
 </h2>
 <p>Since starting my journey into discovering different development environments within my personal linux setup,
-and attempting to make them practical either for Computer Science school work or just personal projects has proven
-an effecient procrastination technique. However, I love text editors, and the feeling of customizing a neovim plugin for
-the first time is wonderful. However, the ecosystem surround neovim and the pace at which the plugins evolve I quickly became
-exausted trying to keep up after being out of touch with the editor for times. Around late last year I discovered Emacs, first
-because of <a href="https://www.orgmode.org">org-mode</a>, then later falling in love with the GUI editor first PDE, and <a href="https://github.com/emacs-evil/evil">evil-mode</a>.</p>
+attempting to make them practical either for Computer Science school work or just personal projects has proven
+an effecient procrastination technique. However, I love text editors, and the feeling of customizing a Neovim plugin for
+the first time is wonderful. However, the ecosystem surround Neovim and the pace at which the plugins evolve I quickly became
+exausted trying to keep up after being out of touch with the editor for times.</p>
+<h3 class="heading" id="discovering-alternatives">
+  Discovering Alternatives
+  <a class="anchor" href="#discovering-alternatives">#</a>
+</h3>
+<p>Around late last year I discovered Emacs, first because of <a href="https://www.orgmode.org">org-mode</a>, then later falling in love with the GUI editor first PDE, and <a href="https://github.com/emacs-evil/evil">evil-mode</a>.</p>
 <p>I started out using an out-of-the-box distrobution of evil-mode Emacs called <a href="https://github.com/doomemacs/doomemacs">doom-emacs</a>. Doom provided a way to keep the lovely
-vim keybinds that have been baked into my brain while allowing me to use cool native Emacs features and plugins. Additionally,
-the utility for me to use neovim for text editing has shifted mainly to not provide IDE features. This was inspired by trying to
-edit some assignment code that I had secure copied into my univerities virtual machine. For fun, I decided to clone my neovim config
-and benefit from the LSP setup. However, after long download times and heavy lag I realized that I had entirely defeated the purpose
-of my light-weight text editor by giving it the resposibility of a full blown IDE. Furthermore, neovim has amazing stock featuers,
-and in the nightly branch now has a built-in package manager, which is quite intriguing.</p>
+vim keybinds that have been baked into my brain while allowing me to use cool native Emacs features and plugins.</p>
+<p>Over time, the utility for me to use Neovim for text editing has shifted mainly to not provide IDE features. I was inspired
+by trying to edit some assignment code that I had secure copied into my univerities virtual machine. For fun, I decided
+to clone my Neovim config and benefit from the LSP setup. However, after long download times and heavy lag I realized that I had
+entirely defeated the purpose of my light-weight text editor by giving it the resposibility of a full blown IDE.</p>
+<p>That said, Neovim has amazing stock featuers, and in the nightly branch now has a built-in package manager. Which you can see
+in my Neovim config&rsquo;s <a href="https://github.com/nathantebbs/dotfiles/blob/main/nvim/init.lua#L17">init.lua</a></p>
+<h3 class="heading" id="return-to-minimalsim">
+  Return to Minimalsim
+  <a class="anchor" href="#return-to-minimalsim">#</a>
+</h3>
 <p>After getting familiar with doom, I realized that I was loading 200 packages on startup, and I couldn&rsquo;t even tell you what half of
 them were. Also, doom comes with a lot of custom Emacs keybindings, and I love evil mode but trying remap all baseline functionality
-breaks the reason why you choose an editor to. Basically, I don&rsquo;t want to turn Emacs into Neo-vim, I just want hjkl.</p>
+breaks the reason why you choose an editor to. Basically, I don&rsquo;t want to turn Emacs into Neovim, I just want hjkl.</p>
 <h2 class="heading" id="emacs-configuration">
   Emacs Configuration
   <a class="anchor" href="#emacs-configuration">#</a>
@@ -211,6 +234,9 @@ breaks the reason why you choose an editor to. Basically, I don&rsquo;t want to 
   Basic U/I + Basic Options
   <a class="anchor" href="#basic-u-i-plus-basic-options">#</a>
 </h3>
+<p>When you first start Emacs, there are a lot of simple U/I options that should be off by default
+for any competant user. Below we remove clunky things like window decorations, enable line numbers, autopairs, which-key
+org-agenda files, &lt;C-u&gt; for up scroll, and no more annoying backup~ files.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span><span style="color:#75715e">;; Remove window decorations</span>
 </span></span><span style="display:flex;"><span>(menu-bar-mode <span style="color:#ae81ff">-1</span>)
 </span></span><span style="display:flex;"><span>(tool-bar-mode <span style="color:#ae81ff">-1</span>)
@@ -237,13 +263,12 @@ breaks the reason why you choose an editor to. Basically, I don&rsquo;t want to 
 </span></span><span style="display:flex;"><span>(setq make-backup-file <span style="color:#66d9ef">nil</span>) <span style="color:#75715e">;; No more</span>
 </span></span><span style="display:flex;"><span>(setq auto-save-default <span style="color:#66d9ef">nil</span>) <span style="color:#75715e">;; No autosave files</span>
 </span></span><span style="display:flex;"><span>(setq backup-directory-alist <span style="color:#f92672">&#39;</span>((<span style="color:#e6db74">&#34;.*&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;~/.Trash&#34;</span>)))
-</span></span></code></pre></div><p>When you first start Emacs, there are a lot of simple U/I options that should be off by default
-for any competant user. Above we remove clunky things like window decorations, enable line numbers, autopairs, which-key
-org-agenda files, &lt;C-u&gt; for up scroll, and no more annoying backup~ files.</p>
-<h3 class="heading" id="keybindings">
+</span></span></code></pre></div><h3 class="heading" id="keybindings">
   Keybindings
   <a class="anchor" href="#keybindings">#</a>
 </h3>
+<p>These are just the basic keybindings that I have set after about a week of playing with this config. The first place I might
+expand beyond this is probably looking more into magit, or some better org mode integration.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">;; ===============</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">;; Keybindings</span>
@@ -254,16 +279,11 @@ org-agenda files, &lt;C-u&gt; for up scroll, and no more annoying backup~ files.
 </span></span><span style="display:flex;"><span>(global-set-key (kbd <span style="color:#e6db74">&#34;C-x e&#34;</span>) <span style="color:#e6db74">&#39;eval-buffer</span>)
 </span></span><span style="display:flex;"><span>(global-set-key (kbd <span style="color:#e6db74">&#34;C-c a&#34;</span>) <span style="color:#e6db74">&#39;org-agenda-list</span>)
 </span></span><span style="display:flex;"><span>(global-set-key (kbd <span style="color:#e6db74">&#34;C-c o&#34;</span>) <span style="color:#f92672">&#39;</span>(lambda () (interactive) (find-file <span style="color:#e6db74">&#34;~/org/todo.org&#34;</span>)))
-</span></span></code></pre></div><p>These are just the basic keybindings that I have set after about a week of playing with this config. The first place I might
-expand beyond this is probably looking more into magit, or some better org mode integration.</p>
-<h3 class="heading" id="package-setup">
+</span></span></code></pre></div><h3 class="heading" id="package-setup">
   Package Setup
   <a class="anchor" href="#package-setup">#</a>
 </h3>
-<h4 class="heading" id="bootstrapping-straight-dot-el">
-  Bootstrapping straight.el
-  <a class="anchor" href="#bootstrapping-straight-dot-el">#</a>
-</h4>
+<p>This is the basic bootstrap for straight.el which we will use to install external packages below.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">;; Straight.el bootstrap</span>
 </span></span><span style="display:flex;"><span>(defvar bootstrap-version)
@@ -281,11 +301,11 @@ expand beyond this is probably looking more into magit, or some better org mode 
 </span></span><span style="display:flex;"><span>      (<span style="color:#a6e22e">goto-char</span> (<span style="color:#a6e22e">point-max</span>))
 </span></span><span style="display:flex;"><span>      (eval-print-last-sexp)))
 </span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">load</span> bootstrap-file <span style="color:#66d9ef">nil</span> <span style="color:#e6db74">&#39;nomessage</span>))
-</span></span></code></pre></div><p>This is the basic bootstrap for straight.el which we will use to install external packages below.</p>
-<h4 class="heading" id="installing-packages-via-use-package">
+</span></span></code></pre></div><h3 class="heading" id="installing-packages-via-use-package">
   Installing packages via &lsquo;use-package&rsquo;
   <a class="anchor" href="#installing-packages-via-use-package">#</a>
-</h4>
+</h3>
+<p>Most of these packages are up to personal preference for my goals with my own config.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">;; ===============</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">;; Install Packages:</span>
@@ -338,12 +358,23 @@ expand beyond this is probably looking more into magit, or some better org mode 
 </span></span><span style="display:flex;"><span>(use-package ox-hugo
 </span></span><span style="display:flex;"><span>  :straight <span style="color:#66d9ef">t</span>
 </span></span><span style="display:flex;"><span>  :after ox)
-</span></span></code></pre></div><p>Most of these packages are up to personal preference for my goals with my own config. Notebly however I have chosen to use
-an external theme as apposed to a built in themes. The main reasoning I have behind this is because my emacs config is designed
-to be lightweight but not portable, that is I won&rsquo;t be installing this on any VMs. The sipler option to install a theme:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span><span style="color:#75715e">;; use M-x describe-theme RET</span>
+</span></span></code></pre></div><h3 class="heading" id="theme">
+  Theme
+  <a class="anchor" href="#theme">#</a>
+</h3>
+<p>I have chosen to use an external theme as apposed to a built in themes. The main reasoning I have behind this is because
+my emacs config is designed to be lightweight but not portable, that is I won&rsquo;t be installing this on any VMs.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span><span style="color:#75715e">;; Simple Option</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; use M-x describe-theme RET to see available themes</span>
 </span></span><span style="display:flex;"><span>(load-theme <span style="color:#e6db74">&#39;modus-vivendi</span>)
-</span></span></code></pre></div><h2 class="heading" id="sources">
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; Current Approach (using straight.el)</span>
+</span></span><span style="display:flex;"><span>(use-package gruber-darker-theme
+</span></span><span style="display:flex;"><span>  :straight <span style="color:#66d9ef">t</span>
+</span></span><span style="display:flex;"><span>  :config
+</span></span><span style="display:flex;"><span>  (load-theme <span style="color:#e6db74">&#39;gruber-darker</span> <span style="color:#66d9ef">t</span>))
+</span></span></code></pre></div><img src="/images/emacs.png" alt="Final product of config in action with the colorscheme set">
+<h2 class="heading" id="sources">
   Sources
   <a class="anchor" href="#sources">#</a>
 </h2>
@@ -364,6 +395,35 @@ to be lightweight but not portable, that is I won&rsquo;t be installing this on 
 
   
   
+
+<div class="single-pagination">
+    <hr />
+
+    <div class="flexnowrap">
+
+        <div class="single-pagination-prev">
+            
+        </div>
+
+        <div class="single-pagination-next">
+            
+            <div class="single-pagination-container-next">
+                <div class="single-pagination-text">
+                    <a href="/posts/post-2/">
+                        Exploring Raylib in Zig
+                    </a>
+                </div>
+                <div class="single-pagination-text">→</div>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <hr />
+</div>
+
+
 
   
 
