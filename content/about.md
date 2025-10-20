@@ -15,7 +15,7 @@ draft = false
         I moved to Tucson, Arizona to pursue a Bachelor of Science in Computer Science, where I am now expected to graduate
         in Spring of next year.</p>
         <p>During High School, I joined an after school <a href="https://www.firstinspires.org/programs/frc/" target="_blank">FRC</a> program,
-        and found team <a href="https://www.firstinspires.org/programs/frc/" target="_blank">4450</a>. During my two years as Safety Captain
+        and found team <a href="https://www.orf4450.org/" target="_blank">4450</a>. During my two years as Safety Captain
         I was exposed to the engineering process in a competative environment, while also leading a capstone expidition to a
         partner junior robotics team to bring metal based robotics to Cairo, Egypt.</p>
     </div>
