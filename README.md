@@ -6,6 +6,12 @@ of org files.
 
 ## Usage
 
+### Development
 ```bash
-hugo server -D --watch --disableFastRender
+hugo server -D --disableFastRender
+```
+
+### Publishing
+```bash
+hugo build
 ```
