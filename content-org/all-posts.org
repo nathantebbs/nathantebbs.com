@@ -27,10 +27,10 @@
 
 
 
-* DONE Post 1
+* DONE Migrating from Neovim to Emacs
 :PROPERTIES:
 :EXPORT_HUGO_SECTION: /posts/
-:EXPORT_FILE_NAME: post-1
+:EXPORT_FILE_NAME: migrating-from-neovim-to-emacs
 :EXPORT_DATE: <2025-09-17 Wed>
 :EXPORT_TITLE: Migrating from Neovim to Emacs
 :EXPORT_HUGO_TAGS: Emacs Configuration
