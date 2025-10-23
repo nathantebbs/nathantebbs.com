@@ -27,12 +27,6 @@ paginationSize = 100
 listSummaries = true
 listDateFormat = '2 Jan 2006'
 
-# Breadcrumbs
-[params.breadcrumbs]
-enabled = true
-showCurrentPage = true
-home = "Home"
-
 # Social icons
 [[params.social]]
 name = "linkedin"
