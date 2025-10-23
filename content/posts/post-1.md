@@ -1,7 +1,7 @@
 +++
 title = "Migrating from Neovim to Emacs"
 date = 2025-09-17T00:00:00-07:00
-tags = ["Config"]
+tags = ["Emacs", "Configuration"]
 draft = false
 summary = "A reflection on moving from a complex Neovim setup to a simpler, more intentional Emacs configuration that balances customization with minimalism."
 +++
@@ -16,7 +16,9 @@ summary = "A reflection on moving from a complex Neovim setup to a simpler, more
     - [Return to Minimalsim](#return-to-minimalsim)
 - [Emacs Configuration](#emacs-configuration)
     - [Basic U/I + Basic Options](#basic-u-i-plus-basic-options)
+    - [Fixing Directory Clutter](#fixing-directory-clutter)
     - [Keybindings](#keybindings)
+    - [Custom Functionality](#custom-functionality)
     - [Package Setup](#package-setup)
     - [Installing packages via 'use-package'](#installing-packages-via-use-package)
     - [Theme](#theme)
@@ -84,7 +86,9 @@ org-agenda files, &lt;C-u&gt; for up scroll, and no more annoying backup~ files.
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
-(global-display-line-numbers-mode t) ;; Line numbers
+;; Lines
+(global-display-line-numbers-mode t)
+(setq truncate-lines t) ;; No visual wrapping
 
 (setq inhibit-startup-screen t) ;; Disable startup screen
 
@@ -98,32 +102,67 @@ org-agenda files, &lt;C-u&gt; for up scroll, and no more annoying backup~ files.
 ;; Misc
 (electric-pair-mode t) ;; Autopairs
 (which-key-mode) ;; which-key
-(setq org-agenda-files '("~/org/todo.org"))
-(setq evil-want-C-u-scroll t) ;; Please fix scroll!! (this works)
+```
 
-;; Change file backup location
-(setq make-backup-file nil) ;; No more
-(setq auto-save-default nil) ;; No autosave files
-(setq backup-directory-alist '((".*" . "~/.Trash")))
+
+### Fixing Directory Clutter {#fixing-directory-clutter}
+
+In Emacs, by default, autosave and backup versions of a file that you are editing
+may be saved in the current working directory. This usually results in errors, and just
+overall messiness in projects. To fix this, and customize a couple more options we are going
+to define, create, and use directories in the user-emacs-directory (usually ~/.emacs.d)
+
+```elisp
+
+;; Create backup and autosave directories if they don't exist
+(let ((backup-dir (expand-file-name "backups/" user-emacs-directory))
+      (autosave-dir (expand-file-name "autosaves/" user-emacs-directory)))
+  (make-directory backup-dir t)
+  (make-directory autosave-dir t)
+
+  ;; Backups (files ending with ~)
+  (setq backup-directory-alist `(("." . ,backup-dir))
+        make-backup-files t
+        version-control t          ; use versioned backups
+        kept-new-versions 10
+        kept-old-versions 2
+        delete-old-versions t)
+
+  ;; Autosave files (#foo#)
+  (setq auto-save-file-name-transforms `((".*" ,autosave-dir t))
+        auto-save-default t
+        auto-save-timeout 20        ; save every 20 sec idle
+        auto-save-interval 200))    ; or every 200 keystrokes
 ```
 
 
 ### Keybindings {#keybindings}
 
-These are just the basic keybindings that I have set after about a week of playing with this config. The first place I might
-expand beyond this is probably looking more into magit, or some better org mode integration.
+In my configuration, I do most of my keybinding within the relative use-package block. If you would like to define
+global maps outside of use-package, make sure the package is loaded before setting any options or keybindings.
+If you want to see an example of defining keybindings within the use-package block, then refer to the evil-mode [configuration](#evil-mode-configuration)
+after we bootstrap our package installation system.
 
 ```elisp
-
-;; ===============
-;; Keybindings
-;; ===============
-
+;; Example global definition
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "C-x C-c") '(lambda () (interactive) (find-file "~/.emacs")))
-(global-set-key (kbd "C-x e") 'eval-buffer)
-(global-set-key (kbd "C-c a") 'org-agenda-list)
-(global-set-key (kbd "C-c o") '(lambda () (interactive) (find-file "~/org/todo.org")))
+
+;; Example package specific definition
+(with-eval-after-load 'dired
+  (define-key dired-mode-map (kbd "-") #'dired-up-directory))
+```
+
+
+### Custom Functionality {#custom-functionality}
+
+It may also be useful to define custom functions to be triggered either on a keybinding
+or just activated through M-x. One of the most useful functions I have included in my configuration
+is for connecting to a commonly used ssh host through dired.
+
+```elisp
+(defun connect-lectura ()
+  (interactive)
+  (dired "/ssh:ntebbs@lec.cs.arizona.edu:/home/ntebbs/"))
 ```
 
 
@@ -154,61 +193,66 @@ This is the basic bootstrap for straight.el which we will use to install externa
 
 ### Installing packages via 'use-package' {#installing-packages-via-use-package}
 
-Most of these packages are up to personal preference for my goals with my own config.
+Most of the packages you install are up to personal preference and goals with your own config. However,
+I have decided to include my work in progress evil-mode configuration, but the principles of
+use-package stay almost the same for any package.
+
+
+#### Evil Mode Configuration {#evil-mode-configuration}
 
 ```elisp
-
-;; ===============
-;; Install Packages:
-;; ===============
-
+;; NOTE: This line must after the bootstrap but before 'use-package' uses
 (straight-use-package 'use-package)
-
-;; Theme
-(use-package gruber-darker-theme
-  :straight t
-  :config
-  (load-theme 'gruber-darker t))
-
 ;; Evil mode
 (use-package evil
-  :straight t)
-(require 'evil)
-(evil-mode 1)
-
-;; Magit
-(use-package magit
-  :straight t)
-
-;; Devdocs
-;; NOTE: use M-x devdocs-install
-(use-package devdocs
-  :straight t)
-
-;; Company
-(use-package company
   :straight t
-  :hook (prog-mode . global-company-mode))
 
-;; Fzf
-(use-package fzf
-  :bind ("C-c s" . fzf-grep)
-  :straight t)
-
-
-;; Markdown
-(use-package markdown-mode
-  :straight t
-  :mode ("\\.md\\'" . markdown-mode)
   :init
-  (setq markdown-command "multimarkdown")  ;; or "pandoc"
-  :config
-  (setq markdown-fontify-code-blocks-natively t))
+  (setq evil-want-C-u-scroll t) ;; Fixes C-u scrolling
 
-;; ox-hugo
-(use-package ox-hugo
-  :straight t
-  :after ox)
+  :config
+  (evil-mode 1)
+
+  ;; =================
+  ;; *Evil* Keymaps
+  ;; =================
+
+  ;; Leader
+  (define-prefix-command 'nate/leader-map)
+  (define-key evil-normal-state-map (kbd "SPC") 'nate/leader-map)
+  (define-key evil-visual-state-map (kbd "SPC") 'nate/leader-map)
+
+  ;; Finding Files
+  (define-key nate/leader-map (kbd "s n") (lambda () (interactive) (fzf-find-file-in-dir "~/dotfiles/")))
+  (define-key nate/leader-map (kbd "s f") (lambda () (interactive) (fzf-find-file)))
+  (define-key nate/leader-map (kbd "s p") (lambda () (interactive) (fzf-find-file-in-dir "~/dev/probe/")))
+  (define-key nate/leader-map (kbd "f") #'find-file)
+  (define-key nate/leader-map (kbd "e") #'dired-jump)
+
+  ;; Magit
+  (define-key nate/leader-map (kbd "g s") #'magit)
+
+  ;; Org Mode
+  (define-key nate/leader-map (kbd "o p") #'org-pomodoro)
+  (define-key nate/leader-map (kbd "o a") #'org-agenda)
+  (define-key nate/leader-map (kbd "o c") #'org-capture)
+  (define-key nate/leader-map (kbd "o v") #'org-tags-view)
+  (define-key nate/leader-map (kbd "o t") (lambda () (interactive) (find-file "~/org/todo.org")))
+  (define-key nate/leader-map (kbd "o n") (lambda () (interactive) (find-file "~/org/notes.org")))
+  (define-key nate/leader-map (kbd "o P") (lambda () (interactive) (find-file "~/org/projects.org")))
+  (define-key nate/leader-map (kbd "o A") (lambda () (interactive) (find-file "~/org/assignments.org")))
+
+  ;; State
+  (define-key evil-insert-state-map (kbd "C-g") 'evil-change-to-previous-state)
+  (define-key evil-visual-state-map (kbd "C-g") 'evil-change-to-previous-state)
+
+  ;; Buffers
+  (define-key nate/leader-map (kbd "b b") #'switch-to-buffer)
+  (define-key nate/leader-map (kbd "b i") #'ibuffer-other-window)
+  (define-key nate/leader-map (kbd "b k") #'kill-buffer)
+
+  ;; Config
+  (define-key nate/leader-map (kbd "r r") (lambda () (interactive) (load-file "~/.emacs"))))
 ```
 
 

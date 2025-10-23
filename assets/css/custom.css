@@ -1,10 +1,9 @@
-
 :root {
-    --main-width: 1280px; 
+    --main-width: 960px; 
 }
 
 body {
-    font-size: 1.35rem;
+    font-weight: 500;
     letter-spacing: 0.02e;
 }
 

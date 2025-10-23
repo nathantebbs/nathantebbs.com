@@ -3,7 +3,7 @@
   dir="ltr">
 
 <head>
-	<meta name="generator" content="Hugo 0.151.2"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta name="generator" content="Hugo 0.150.0">
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 
@@ -21,13 +21,13 @@
 
 
 
-<link rel="icon" type="image/ico" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="192x192" href="http://localhost:1313/android-chrome-192x192.png">
-<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="icon" type="image/ico" href="https://nathantebbs.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://nathantebbs.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://nathantebbs.com/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="https://nathantebbs.com/android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://nathantebbs.com/apple-touch-icon.png">
 
-<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/index.xml" title="Nathan Tebbs">
+<link rel="alternate" type="application/rss+xml" href="https://nathantebbs.com/index.xml" title="Nathan Tebbs">
 <meta name="description" content="A Tech Blog"/>
 
 
@@ -38,9 +38,9 @@
     
 </title>
 
-<link rel="canonical" href="http://localhost:1313/"/>
+<link rel="canonical" href="https://nathantebbs.com/"/>
 
-<meta property="og:url" content="http://localhost:1313/">
+<meta property="og:url" content="https://nathantebbs.com/">
   <meta property="og:site_name" content="Nathan Tebbs">
   <meta property="og:title" content="Home">
   <meta property="og:description" content="A Tech Blog">
@@ -53,7 +53,11 @@
 
 
 
-<link rel="stylesheet" href="/assets/combined.min.757465a21cd128e1351aefdd56388c595ffa251f97344f13c86e8dcfe0899e91.css" media="all">
+<link rel="stylesheet" href="/assets/combined.min.bf13a23f4f81b1da696dd6250fb047537c5b4c01b1dd7664ed5b53f07fc7cdeb.css" media="all">
+
+
+
+
 
 
 
@@ -89,7 +93,7 @@
     
 
     <h1 class="header-title">
-        <a href="http://localhost:1313/">Nathan Tebbs</a>
+        <a href="https://nathantebbs.com/">Nathan Tebbs</a>
     </h1>
 
     <div class="header-menu">
@@ -187,60 +191,6 @@ computer networking, and C/C++ programming.</p>
 
     
 
-    
-    <div class="post-line">
-
-    
-
-    
-        <p class="line-date">10 Oct 2025 </p>
-    
-
-    <div>
-        <p class="line-title">
-            <a href="/posts/post-2/">
-                Exploring Raylib in Zig
-            </a>
-        </p>
-
-        
-        <p class="line-summary"> <p><strong>This post is currently testing a simple &ldquo;Hello, World&rdquo; program in C.</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Zig" data-lang="Zig"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> rl <span style="color:#f92672">=</span> @import(<span style="color:#e6db74">&#34;raylib&#34;</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() <span style="color:#66d9ef">anyerror</span><span style="color:#f92672">!</span><span style="color:#66d9ef">void</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Initialization
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//--------------------------------------------------------------------------------------
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> screenWidth <span style="color:#f92672">=</span> <span style="color:#ae81ff">800</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> screenHeight <span style="color:#f92672">=</span> <span style="color:#ae81ff">450</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    rl.<span style="color:#a6e22e">initWindow</span>(screenWidth, screenHeight, <span style="color:#e6db74">&#34;raylib-zig [core] example - basic window&#34;</span>);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">defer</span> rl.<span style="color:#a6e22e">closeWindow</span>(); <span style="color:#75715e">// Close window and OpenGL context
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>    rl.<span style="color:#a6e22e">setTargetFPS</span>(<span style="color:#ae81ff">60</span>); <span style="color:#75715e">// Set our game to run at 60 frames-per-second
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//--------------------------------------------------------------------------------------
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Main game loop
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>rl.<span style="color:#a6e22e">windowShouldClose</span>()) { <span style="color:#75715e">// Detect window close button or ESC key
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// Update
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">//----------------------------------------------------------------------------------
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// TODO: Update your variables here
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">//----------------------------------------------------------------------------------
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Draw
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">//----------------------------------------------------------------------------------
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        rl.<span style="color:#a6e22e">beginDrawing</span>();
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">defer</span> rl.<span style="color:#a6e22e">endDrawing</span>();
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        rl.<span style="color:#a6e22e">clearBackground</span>(.white);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        rl.<span style="color:#a6e22e">drawText</span>(<span style="color:#e6db74">&#34;Congrats! You created your first window!&#34;</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">200</span>, <span style="color:#ae81ff">20</span>, .light_gray);
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//----------------------------------------------------------------------------------
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div> </p>
-        
-    </div>
-</div>
     
     <div class="post-line">
 
