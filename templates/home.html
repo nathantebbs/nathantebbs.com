@@ -1,0 +1,20 @@
+{% extends "base.html" %} {% block content %}
+<section>
+  <h1>Home</h1>
+  <p>Notes and projects.</p>
+
+  <h2>Latest notes</h2>
+  <ul class="post-list">
+    {% for e in notes %}
+    <li><a href="/notes/{{ e.slug }}/">{{ e.title }}</a></li>
+    {% endfor %}
+  </ul>
+
+  <h2>Portfolio</h2>
+  <ul class="post-list">
+    {% for e in portfolio %}
+    <li><a href="/portfolio/{{ e.slug }}/">{{ e.title }}</a></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %} {% block content %}
+<section>
+  <h1>{{ heading }}</h1>
+  {% if intro %}
+  <p>{{ intro }}</p>
+  {% endif %}
+
+  <ul class="post-list">
+    {% for e in entries %}
+    <li>
+      <a href="/{{ kind }}/{{ e.slug }}/">{{ e.title }}</a>
+      {% if e.date %}<span class="meta"> {{ e.date }}</span>{% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

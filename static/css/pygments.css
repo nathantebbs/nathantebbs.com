@@ -1,0 +1,122 @@
+/* Pygments - dark subtle theme */
+.codehilite {
+    background: #1f2223;
+    border: 1px solid #2a2d2e;
+    border-radius: 6px;
+    padding: 1rem;
+    overflow-x: auto;
+}
+.codehilite pre {
+    margin: 0;
+    font-family: ui-monospace, "JetBrains Mono", monospace;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #e4e4e4;
+}
+
+.codehilite span {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+pre code {
+    background: none !important;
+    border: none !important;
+}
+
+/* token colors */
+.codehilite .c {
+    color: #7b8496;
+    font-style: italic;
+} /* Comment */
+.codehilite .k {
+    color: #7aa2f7;
+} /* Keyword */
+.codehilite .o {
+    color: #89b4fa;
+} /* Operator */
+.codehilite .p {
+    color: #cdd6f4;
+} /* Punctuation */
+.codehilite .s {
+    color: #a6e3a1;
+} /* String */
+.codehilite .sa {
+    color: #a6e3a1;
+} /* String.Affix */
+.codehilite .sb {
+    color: #a6e3a1;
+}
+.codehilite .sc {
+    color: #a6e3a1;
+}
+.codehilite .sd {
+    color: #a6e3a1;
+}
+.codehilite .se {
+    color: #a6e3a1;
+}
+.codehilite .sh {
+    color: #a6e3a1;
+}
+.codehilite .si {
+    color: #a6e3a1;
+}
+.codehilite .sr {
+    color: #a6e3a1;
+}
+.codehilite .ss {
+    color: #a6e3a1;
+}
+.codehilite .s1 {
+    color: #a6e3a1;
+}
+.codehilite .s2 {
+    color: #a6e3a1;
+}
+.codehilite .m {
+    color: #fab387;
+} /* Number */
+.codehilite .mi {
+    color: #fab387;
+}
+.codehilite .mf {
+    color: #fab387;
+}
+.codehilite .mh {
+    color: #fab387;
+}
+.codehilite .mo {
+    color: #fab387;
+}
+.codehilite .n {
+    color: #e4e4e4;
+} /* Name */
+.codehilite .na {
+    color: #f9e2af;
+} /* Attribute */
+.codehilite .nb {
+    color: #f9e2af;
+} /* Builtins */
+.codehilite .nc {
+    color: #f38ba8;
+} /* Class */
+.codehilite .nd {
+    color: #cba6f7;
+} /* Decorator */
+.codehilite .ne {
+    color: #f38ba8;
+} /* Exception */
+.codehilite .nf {
+    color: #89b4fa;
+} /* Function */
+.codehilite .nt {
+    color: #f38ba8;
+} /* Tag */
+.codehilite .nv {
+    color: #f2cdcd;
+} /* Variable */
+.codehilite .w {
+    color: #6c7086;
+} /* Whitespace */
