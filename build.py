@@ -61,6 +61,13 @@ def parse_md(path: Path, kind: str) -> Entry:
     html = markdown.markdown(
         body,
         extensions=["fenced_code", "codehilite", "tables"],
+        extension_configs={
+            "codehilite": {
+                "css_class": "codehilite",
+                "guess_lang": False,
+                "use_pygments": True,
+            }
+        },
         output_format="html5",
     )
 

@@ -180,6 +180,19 @@ img{
   border-radius: 6px;
 }
 
+/* Cover images in prose - smaller display */
+.prose > p:first-child img,
+.prose img[alt="Cover"] {
+  display: block;
+  max-width: 50%;
+  margin: 0 auto 20px;
+}
+
+/* Article titles centered */
+article > h1 {
+  text-align: center;
+}
+
 /* Top nav for documents */
 .top-nav{
   margin-bottom: 20px;

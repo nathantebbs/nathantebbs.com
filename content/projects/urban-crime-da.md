@@ -1,13 +1,13 @@
 ---
-title: Tucson Crime Analysis - Income and Street Lighting
-date: 2026-01-21
+title: Tucson Crime Analysis
+date: 2025-05-27
 authors: ["Nathan Tebbs", "Andrew Hicks", "Cole Hageman"]
 tags: [python, data-science, ml, regression, geospatial, tucson]
 ---
 
-<img class="cover" src="/img/3d-cover.png" alt="Cover">
+<img src="/img/3d-cover.png" alt="Cover">
 
-## Preface
+## Abstract
 
 This post will cover in some detail a project taken on by myself and two peers. To see a more detailed and academic
 presentation of our findings please see:
@@ -67,6 +67,7 @@ crime_df["Time_Period"] = crime_df["Hour"].apply(categorize_time)
 crime_df = crime_df[crime_df["Year"].isin([2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025])]
 crime_df = crime_df.dropna(subset=["Ward", "UCRDescription", "DateOccurred", "Hour"])
 crime_df.loc[:, "Ward"] = crime_df["Ward"].astype(int)
+```
 
 ## Building ward-level features + integrating datasets
 
