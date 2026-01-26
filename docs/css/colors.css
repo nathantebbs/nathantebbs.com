@@ -1,0 +1,61 @@
+/* colors.css — Modus Vivendi inspired color palette
+ *
+ * Modus Vivendi is a highly accessible dark theme for GNU Emacs
+ * that conforms with WCAG AAA standard (7:1 contrast ratio).
+ *
+ * Original theme by Protesilaos Stavrou
+ * https://protesilaos.com/emacs/modus-themes
+ */
+
+:root {
+  /* Background colors */
+  --bg-main: #000000;
+  --bg-dim: #1e1e1e;
+  --bg-active: #323232;
+  --bg-inactive: #2b2b2b;
+
+  /* Foreground colors */
+  --fg-main: #ffffff;
+  --fg-dim: #989898;
+  --fg-alt: #c6daff;
+
+  /* Accent colors */
+  --blue: #2fafff;
+  --blue-warmer: #79a8ff;
+  --blue-cooler: #00bcff;
+  --cyan: #00d3d0;
+  --cyan-cooler: #6ae4b9;
+  --magenta: #feacd0;
+  --magenta-cooler: #b6a0ff;
+  --yellow: #fec43f;
+  --yellow-warmer: #d0bc00;
+  --green: #44bc44;
+  --red: #ff5f59;
+
+  /* Semantic colors for web use */
+  --bg: var(--bg-main);
+  --text: var(--fg-main);
+  --muted: var(--fg-dim);
+  --link: var(--blue-warmer);
+  --link-hover: var(--blue-cooler);
+  --rule: rgba(255, 255, 255, 0.12);
+
+  /* Heading colors (Modus Themes style) */
+  --heading-0: var(--fg-main);       /* Document title */
+  --heading-1: var(--magenta);        /* Major sections */
+  --heading-2: var(--cyan);           /* Subsections */
+  --heading-3: var(--cyan-cooler);   /* Sub-subsections */
+  --heading-4: var(--magenta-cooler);
+
+  /* Pre/code block colors */
+  --code-bg: var(--bg-dim);
+  --code-border: rgba(255, 255, 255, 0.06);
+
+  /* Additional semantic accents */
+  --accent-keyword: var(--magenta-cooler);
+  --accent-string: var(--green);
+  --accent-comment: var(--fg-dim);
+  --accent-warning: var(--yellow-warmer);
+  --accent-error: var(--red);
+  --accent-success: var(--green);
+}

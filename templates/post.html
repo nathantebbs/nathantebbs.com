@@ -1,13 +1,20 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
+{% block content %}
+<nav class="top-nav">
+  <a href="/">&larr; Home</a>
+  <span> / </span>
+  <a href="/{{ entry.kind }}/">{{ entry.kind | capitalize }}</a>
+</nav>
+
 <article>
   <h1>{{ entry.title }}</h1>
   <p class="meta">
-    {% if entry.date %}
-    <time datetime="{{ entry.date }}">{{ entry.date }}</time>
-    {% endif %} <br />{% if entry.authors %} Authors: {{ entry.authors | join(",
-    ") }} {% endif %} <br />{% if entry.tags %} [{{ entry.tags | join(", ") }}]
-    {% endif %}
+    {% if entry.date %}<time datetime="{{ entry.date }}">{{ entry.date }}</time>{% endif %}
+    {% if entry.authors %}<br />Authors: {{ entry.authors | join(", ") }}{% endif %}
+    {% if entry.tags %}<br />[{{ entry.tags | join(", ") }}]{% endif %}
   </p>
+
+  <hr />
 
   <div class="prose">{{ entry.html | safe }}</div>
 </article>

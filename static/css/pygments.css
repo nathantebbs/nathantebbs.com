@@ -1,122 +1,131 @@
-/* Pygments - dark subtle theme */
-.codehilite {
-    background: #1f2223;
-    border: 1px solid #2a2d2e;
-    border-radius: 6px;
-    padding: 1rem;
-    overflow-x: auto;
-}
+/* Pygments/codehilite theme using Modus Vivendi colors */
+
+.codehilite,
 .codehilite pre {
-    margin: 0;
-    font-family: ui-monospace, "JetBrains Mono", monospace;
-    font-size: 0.95rem;
-    line-height: 1.5;
-    color: #e4e4e4;
+  color: var(--fg-main);
+  background: var(--code-bg);
+  font-family: inherit;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.45;
+  tab-size: 2;
+  hyphens: none;
 }
 
-.codehilite span {
-    background: none !important;
-    border: none !important;
-    box-shadow: none !important;
+.codehilite {
+  padding: 12px 14px;
+  margin: 12px 0;
+  overflow: auto;
+  background: var(--code-bg);
+  border: 1px solid var(--code-border);
+  border-radius: 10px;
 }
 
-pre code {
-    background: none !important;
-    border: none !important;
+.codehilite pre {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
 }
 
-/* token colors */
-.codehilite .c {
-    color: #7b8496;
-    font-style: italic;
-} /* Comment */
-.codehilite .k {
-    color: #7aa2f7;
-} /* Keyword */
-.codehilite .o {
-    color: #89b4fa;
-} /* Operator */
+/* Tokens */
+.codehilite .c,
+.codehilite .ch,
+.codehilite .cm,
+.codehilite .cpf,
+.codehilite .c1,
+.codehilite .cs {
+  color: var(--fg-dim);
+  font-style: italic;
+}
+
 .codehilite .p {
-    color: #cdd6f4;
-} /* Punctuation */
-.codehilite .s {
-    color: #a6e3a1;
-} /* String */
-.codehilite .sa {
-    color: #a6e3a1;
-} /* String.Affix */
-.codehilite .sb {
-    color: #a6e3a1;
+  color: var(--fg-main);
 }
-.codehilite .sc {
-    color: #a6e3a1;
+
+.codehilite .kc,
+.codehilite .kd,
+.codehilite .kn,
+.codehilite .kp,
+.codehilite .kr,
+.codehilite .kt,
+.codehilite .k {
+  color: var(--magenta-cooler);
 }
-.codehilite .sd {
-    color: #a6e3a1;
+
+.codehilite .nb,
+.codehilite .bp {
+  color: var(--cyan);
 }
-.codehilite .se {
-    color: #a6e3a1;
+
+.codehilite .nc,
+.codehilite .no,
+.codehilite .nd,
+.codehilite .ni,
+.codehilite .ne,
+.codehilite .nf,
+.codehilite .nl,
+.codehilite .nn,
+.codehilite .nt,
+.codehilite .nv,
+.codehilite .vc,
+.codehilite .vg,
+.codehilite .vi,
+.codehilite .vm {
+  color: var(--magenta);
 }
-.codehilite .sh {
-    color: #a6e3a1;
-}
-.codehilite .si {
-    color: #a6e3a1;
-}
-.codehilite .sr {
-    color: #a6e3a1;
-}
+
+.codehilite .s,
+.codehilite .sa,
+.codehilite .sb,
+.codehilite .sc,
+.codehilite .dl,
+.codehilite .sd,
+.codehilite .s2,
+.codehilite .se,
+.codehilite .sh,
+.codehilite .si,
+.codehilite .sx,
+.codehilite .sr,
+.codehilite .s1,
 .codehilite .ss {
-    color: #a6e3a1;
+  color: var(--green);
 }
-.codehilite .s1 {
-    color: #a6e3a1;
+
+.codehilite .m,
+.codehilite .mb,
+.codehilite .mf,
+.codehilite .mh,
+.codehilite .mi,
+.codehilite .mo,
+.codehilite .il {
+  color: var(--blue-warmer);
 }
-.codehilite .s2 {
-    color: #a6e3a1;
+
+.codehilite .o,
+.codehilite .ow {
+  color: var(--cyan);
 }
-.codehilite .m {
-    color: #fab387;
-} /* Number */
-.codehilite .mi {
-    color: #fab387;
+
+.codehilite .gi {
+  color: var(--green);
 }
-.codehilite .mf {
-    color: #fab387;
+
+.codehilite .gd {
+  color: var(--red);
 }
-.codehilite .mh {
-    color: #fab387;
+
+.codehilite .ge {
+  font-style: italic;
 }
-.codehilite .mo {
-    color: #fab387;
+
+.codehilite .gs {
+  font-weight: bold;
 }
-.codehilite .n {
-    color: #e4e4e4;
-} /* Name */
-.codehilite .na {
-    color: #f9e2af;
-} /* Attribute */
-.codehilite .nb {
-    color: #f9e2af;
-} /* Builtins */
-.codehilite .nc {
-    color: #f38ba8;
-} /* Class */
-.codehilite .nd {
-    color: #cba6f7;
-} /* Decorator */
-.codehilite .ne {
-    color: #f38ba8;
-} /* Exception */
-.codehilite .nf {
-    color: #89b4fa;
-} /* Function */
-.codehilite .nt {
-    color: #f38ba8;
-} /* Tag */
-.codehilite .nv {
-    color: #f2cdcd;
-} /* Variable */
-.codehilite .w {
-    color: #6c7086;
-} /* Whitespace */
+
+.codehilite .err {
+  color: var(--red);
+}

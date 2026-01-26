@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Tucson Crime Analysis - Income and Street Lighting</title>
+    <link rel="stylesheet" href="/css/colors.css" />
+    <link rel="stylesheet" href="/css/rfc.css" />
+    <link rel="stylesheet" href="/css/pygments.css">
+  </head>
+  <body>
+    <main class="rfc">
+      
+<nav class="top-nav">
+  <a href="/">&larr; Home</a>
+  <span> / </span>
+  <a href="/projects/">Projects</a>
+</nav>
+
+<article>
+  <h1>Tucson Crime Analysis - Income and Street Lighting</h1>
+  <p class="meta">
+    <time datetime="2026-01-21">2026-01-21</time>
+    <br />Authors: Nathan Tebbs, Andrew Hicks, Cole Hageman
+    <br />[python, data-science, ml, regression, geospatial, tucson]
+  </p>
+
+  <hr />
+
+  <div class="prose"><p><img class="cover" src="/img/3d-cover.png" alt="Cover"></p>
+<h2>Preface</h2>
+<p>This post will cover in some detail a project taken on by myself and two peers. To see a more detailed and academic
+presentation of our findings please see:</p>
+<ul>
+<li><a href="/pdf/final-report.pdf">Final Report (PDF)</a></li>
+<li><a href="https://github.com/nathantebbs/tucson-crime-analysis?utm_source=chatgpt.com">Source Code</a></li>
+</ul>
+<h2>Overview</h2>
+<p>This project analyzes how reported crime patterns in Tucson relate to (1) neighborhood income and (2) the presence of streetlights. I focused on two main hypotheses:</p>
+<ul>
+<li><strong>Crime vs. Wealth:</strong> do thefts and violent crimes occur more often in richer or poorer areas?</li>
+<li><strong>Crime vs. Streetlights:</strong> does streetlight presence influence crime rates, especially at night?</li>
+</ul>
+<p>The pipeline combines data cleaning + feature engineering, exploratory visualization, and several models (Ridge Regression, Random Forest, Logistic Regression, and OLS).</p>
+<h2>Data sources (inputs)</h2>
+<ul>
+<li>Tucson Police Reported Crimes (CSV)</li>
+<li>Tucson Police Arrests (CSV)</li>
+<li>City of Tucson Streetlight Locations (CSV)</li>
+<li>Neighborhood Income (CSV)</li>
+</ul>
+<h2>Loading + preprocessing</h2>
+<p>A key step was normalizing time fields (extracting an hour from <code>TimeOccur</code>) and building a <em>time period</em> label to support night-crime analysis.</p>
+<pre class="codehilite"><code class="language-python"># Convert DateOccurred to datetime
+crime_df[&quot;DateOccurred&quot;] = pd.to_datetime(crime_df[&quot;DateOccurred&quot;], errors=&quot;coerce&quot;)
+
+def extract_hour(time_str):
+    try:
+        time_str = str(time_str).strip()
+        if time_str.isdigit() and 3 &lt;= len(time_str) &lt;= 4:
+            time_str = time_str.zfill(4)
+            hour = int(time_str[:2])
+            if 0 &lt;= hour &lt;= 23:
+                return hour
+        return np.nan
+    except (ValueError, TypeError):
+        return np.nan
+
+crime_df[&quot;Hour&quot;] = crime_df[&quot;TimeOccur&quot;].apply(extract_hour)
+
+def categorize_time(hour):
+    if pd.isna(hour): return &quot;Unknown&quot;
+    elif 5 &lt;= hour &lt; 12: return &quot;Morning&quot;
+    elif 12 &lt;= hour &lt; 17: return &quot;Afternoon&quot;
+    elif 17 &lt;= hour &lt; 22: return &quot;Evening&quot;
+    else: return &quot;Night&quot;
+
+crime_df[&quot;Time_Period&quot;] = crime_df[&quot;Hour&quot;].apply(categorize_time)
+
+# Filter years and remove rows missing critical fields
+crime_df = crime_df[crime_df[&quot;Year&quot;].isin([2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025])]
+crime_df = crime_df.dropna(subset=[&quot;Ward&quot;, &quot;UCRDescription&quot;, &quot;DateOccurred&quot;, &quot;Hour&quot;])
+crime_df.loc[:, &quot;Ward&quot;] = crime_df[&quot;Ward&quot;].astype(int)
+
+## Building ward-level features + integrating datasets
+
+To comprare areas consistently, we aggregated everything **by ward**:
+
+- `Crime_Count`: total reported crimes per ward
+- `Arrest_Count`: total arrests perward
+- `Night_Crime_Prop`: proportion of crimes occurring at night
+- `Streetlight_Count`: streetlights assigned to by wards via nearest spatial join using GeoPandas
+
+```python
+# Aggregate crime and arrest counts by ward
+crime_by_ward = crime_df.groupby(&quot;Ward&quot;, observed=False).size().reset_index(name=&quot;Crime_Count&quot;)
+arrest_by_ward = arrest_df.groupby(&quot;WARD&quot;, observed=False).size().reset_index(name=&quot;Arrest_Count&quot;)
+
+# Proportion of nighttime crimes per ward
+night_crimes = (
+    crime_df[crime_df[&quot;Time_Period&quot;] == &quot;Night&quot;]
+    .groupby(&quot;Ward&quot;, observed=False).size()
+    .reset_index(name=&quot;Night_Crime_Count&quot;)
+)
+total_crimes = crime_df.groupby(&quot;Ward&quot;, observed=False).size().reset_index(name=&quot;Total_Crime_Count&quot;)
+night_crime_prop = night_crimes.merge(total_crimes, on=&quot;Ward&quot;)
+night_crime_prop[&quot;Night_Crime_Prop&quot;] = night_crime_prop[&quot;Night_Crime_Count&quot;] / night_crime_prop[&quot;Total_Crime_Count&quot;]
+night_crime_prop = night_crime_prop[[&quot;Ward&quot;, &quot;Night_Crime_Prop&quot;]]
+
+# Merge with income data (ward key)
+merged_df = income_df.merge(crime_by_ward, left_on=&quot;WARD&quot;, right_on=&quot;Ward&quot;, how=&quot;left&quot;)
+merged_df = merged_df.merge(arrest_by_ward, on=&quot;WARD&quot;, how=&quot;left&quot;)
+merged_df = merged_df.merge(night_crime_prop, left_on=&quot;WARD&quot;, right_on=&quot;Ward&quot;, how=&quot;left&quot;)
+merged_df = merged_df.drop(columns=[&quot;Ward&quot;], errors=&quot;ignore&quot;)
+
+# Spatial join: assign streetlights to wards using nearest arrest geometry
+arrest_gdf = gpd.GeoDataFrame(
+    arrest_df,
+    geometry=[Point(xy) for xy in zip(arrest_df[&quot;X&quot;], arrest_df[&quot;Y&quot;])],
+    crs=&quot;EPSG:2868&quot;,
+)
+streetlight_gdf = gpd.GeoDataFrame(
+    streetlight_df,
+    geometry=[Point(xy) for xy in zip(streetlight_df[&quot;X&quot;], streetlight_df[&quot;Y&quot;])],
+    crs=&quot;EPSG:2868&quot;,
+)
+
+streetlight_by_ward = gpd.sjoin_nearest(
+    streetlight_gdf,
+    arrest_gdf[[&quot;WARD&quot;, &quot;geometry&quot;]],
+    how=&quot;left&quot;,
+    max_distance=1000,
+)
+streetlight_count = streetlight_by_ward.groupby(&quot;WARD&quot;).size().reset_index(name=&quot;Streetlight_Count&quot;)
+
+merged_df = merged_df.merge(streetlight_count, on=&quot;WARD&quot;, how=&quot;left&quot;)
+merged_df[&quot;Streetlight_Count&quot;] = merged_df[&quot;Streetlight_Count&quot;].fillna(0)
+</code></pre>
+
+<h2>Exploratory Analysis</h2>
+<p>We used a correlation heatmap and a scatter plot to sanity-check relationships between:</p>
+<ul>
+<li>income (<code>MEDHINC_CY</code>, <code>AVGHINC_CY</code>)</li>
+<li>ward crime and arrests</li>
+<li>streetlight counts</li>
+<li>night-crime proportion</li>
+</ul>
+<pre class="codehilite"><code class="language-python">correlation_matrix = merged_df[
+    [&quot;MEDHINC_CY&quot;, &quot;AVGHINC_CY&quot;, &quot;Streetlight_Count&quot;, &quot;Crime_Count&quot;, &quot;Arrest_Count&quot;, &quot;Night_Crime_Prop&quot;]
+].corr()
+
+plt.figure(figsize=(10, 8))
+sns.heatmap(correlation_matrix, annot=True, cmap=&quot;coolwarm&quot;, center=0)
+plt.title(&quot;Correlation Matrix of Income, Streetlights, Night Crimes, and Crime/Arrests&quot;)
+plt.show()
+
+plt.figure(figsize=(12, 8))
+sns.scatterplot(
+    data=merged_df,
+    x=&quot;MEDHINC_CY&quot;,
+    y=&quot;Crime_Count&quot;,
+    size=&quot;Streetlight_Count&quot;,
+    hue=&quot;Night_Crime_Prop&quot;,
+)
+plt.title(&quot;Crime Count vs Median Household Income (size=streetlights, hue=night crime)&quot;)
+plt.xlabel(&quot;Median Household Income ($)&quot;)
+plt.ylabel(&quot;Crime Count&quot;)
+plt.show()
+</code></pre>
+
+<h2>Modeling: high-crime wards (Random Forest + Logistic Regression)</h2>
+<p>To turn this into a prediction problem, we defined a <strong>high-crime ward</strong> as being above
+the <strong>75th percentile</strong> of <code>Crim_Count</code>. Then we trained two classifiers using:</p>
+<ul>
+<li><code>MEDHINC_CY</code> (median income)</li>
+<li><code>AVGHINC_CY</code> (average income)</li>
+<li><code>Streetlight_Count</code> (streetlight data)</li>
+</ul>
+<pre class="codehilite"><code class="language-python"># Define high crime rate as top 25th percentile
+merged_df[&quot;High_Crime&quot;] = (merged_df[&quot;Crime_Count&quot;] &gt; merged_df[&quot;Crime_Count&quot;].quantile(0.75)).astype(int)
+
+X = merged_df[[&quot;MEDHINC_CY&quot;, &quot;AVGHINC_CY&quot;, &quot;Streetlight_Count&quot;]]
+y = merged_df[&quot;High_Crime&quot;]
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+rf_model = RandomForestClassifier(n_estimators=100, class_weight=&quot;balanced&quot;)
+rf_model.fit(X_train_scaled, y_train)
+rf_pred = rf_model.predict(X_test_scaled)
+
+lr_model = LogisticRegression(class_weight=&quot;balanced&quot;)
+lr_model.fit(X_train_scaled, y_train)
+lr_pred = lr_model.predict(X_test_scaled)
+
+print(&quot;Random Forest Performance:&quot;)
+print(f&quot;Accuracy: {accuracy_score(y_test, rf_pred):.2f}&quot;)
+print(f&quot;F1-Score: {f1_score(y_test, rf_pred):.2f}&quot;)
+
+print(&quot;\nLogistic Regression Performance:&quot;)
+print(f&quot;Accuracy: {accuracy_score(y_test, lr_pred):.2f}&quot;)
+print(f&quot;F1-Score: {f1_score(y_test, lr_pred):.2f}&quot;)
+</code></pre>
+
+<p>We also used a feature-importance plot to interpret what the Random Forest reliad on most.</p>
+<pre class="codehilite"><code class="language-python">feature_importance = pd.DataFrame({
+    &quot;Feature&quot;: X.columns,
+    &quot;Importance&quot;: rf_model.feature_importances_,
+}).sort_values(&quot;Importance&quot;, ascending=False)
+
+plt.figure(figsize=(8, 6))
+sns.barplot(x=&quot;Importance&quot;, y=&quot;Feature&quot;, data=feature_importance)
+plt.title(&quot;Random Forest Feature Importance&quot;)
+plt.show()
+</code></pre>
+
+<h2>Regression: estimating relationships (OLS)</h2>
+<p>Finally,we ran OLS models to quantify relationships between income, streetlight count,
+and crime count:</p>
+<ul>
+<li><strong>Model 1</strong>: <code>Crime_Count ~ MEDHINC_CY</code></li>
+<li><strong>Model 2</strong>: <code>Crime_Count ~ MEDHINC_CY + Streetlight_Count</code></li>
+</ul>
+<pre class="codehilite"><code class="language-python"># Model 1: Crime_Count ~ MEDHINC_CY
+X_vt = sm.add_constant(merged_df[&quot;MEDHINC_CY&quot;])
+y_vt = merged_df[&quot;Crime_Count&quot;]
+model = sm.OLS(y_vt, X_vt).fit()
+
+print(&quot;Model 1: Crime_Count ~ MEDHINC_CY&quot;)
+print(model.summary())
+
+# Model 2: Crime_Count ~ MEDHINC_CY + Streetlight_Count
+X_light = sm.add_constant(merged_df[[&quot;Streetlight_Count&quot;, &quot;MEDHINC_CY&quot;]])
+y_light = merged_df[&quot;Crime_Count&quot;]
+light_model = sm.OLS(y_light, X_light).fit()
+
+print(&quot;\nModel 2: Crime_Count ~ MEDHINC_CY + Streetlight_Count&quot;)
+print(light_model.summary())
+</code></pre>
+
+<h2>Takeaways</h2>
+<ul>
+<li>The analysis supports an inverse relationship between <strong>income</strong> and crime count at the
+ward level.</li>
+<li>Including <strong>streetlight count</strong> improves explanatory power and appears to matter alongside
+income.</li>
+<li>Classification models (RF/LR) provide a practical way to label wards as "high crime" based
+on a small set of features.</li>
+</ul>
+<h2>Next steps</h2>
+<ul>
+<li>Make the pipeline fully reproducible outside Colab (local paths + env file)</li>
+<li>Add a dedicated evaluation for night crime prediction using <code>Night_Crime_Prop</code>.</li>
+<li>Consider stronger spatial methods (spatial lag/error models) for geographic dependence.</li>
+</ul></div>
+</article>
+
+
+      <footer class="site-footer">
+        <small>&copy; 2026 Nathan Tebbs</small>
+      </footer>
+    </main>
+  </body>
+</html>

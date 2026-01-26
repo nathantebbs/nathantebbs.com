@@ -13,7 +13,7 @@ ROOT = Path(__file__).parent
 CONTENT = ROOT / "content"
 TEMPLATES = ROOT / "templates"
 STATIC = ROOT / "static"
-OUT = ROOT / "dist"
+OUT = ROOT / "docs"
 
 FONTMATTER_RE = re.compile(r"^---\s*\n(.*?)\n---\s*\n(.*)$", re.S)
 
@@ -105,35 +105,35 @@ def main() -> None:
 
     year = str(dt.datetime.now().year)
 
-    notes = load_entries("notes")
-    portfolio = load_entries("portfolio")
+    posts = load_entries("posts")
+    projects = load_entries("projects")
 
     home_tpl = env.get_template("home.html")
     write_html(
         "/index.html",
-        home_tpl.render(title="Home", year=year, notes=notes[:5], portfolio=portfolio[:5]),
+        home_tpl.render(title="Home", year=year, posts=posts[:5], projects=projects[:5]),
     )
 
     list_tpl = env.get_template("list.html")
     write_html(
-        "/notes/index.html",
-        list_tpl.render(title="Notes", year=year, heading="Notes", intro="Short writeups and notes.",
-                        entries=notes, kind="notes"),
+        "/posts/index.html",
+        list_tpl.render(title="Posts", year=year, heading="Posts", intro="Short writeups and notes.",
+                        entries=posts, kind="posts"),
     )
     write_html(
-        "portfolio/index.html",
-        list_tpl.render(title="Portfolio", year=year, heading="Portfolio", intro="Projects and longer work.",
-                        entries=portfolio, kind="portfolio"),
+        "projects/index.html",
+        list_tpl.render(title="Projects", year=year, heading="Projects", intro="Projects and longer work.",
+                        entries=projects, kind="projects"),
     )
 
     post_tpl = env.get_template("post.html")
-    for e in notes + portfolio:
+    for e in posts + projects:
         write_html(
             f"/{e.kind}/{e.slug}/index.html",
             post_tpl.render(title=e.title, year=year, entry=e),
         )
 
-    print("Built site -> dist/")
+    print("Built site -> docs/")
 
 if __name__ == "__main__":
     main()

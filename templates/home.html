@@ -1,20 +1,25 @@
-{% extends "base.html" %} {% block content %}
-<section>
-  <h1>Home</h1>
-  <p>Notes and projects.</p>
+{% extends "base.html" %}
+{% block content %}
+<h1 class="rfc-title">nathantebbs.com</h1>
 
-  <h2>Latest notes</h2>
-  <ul class="post-list">
-    {% for e in notes %}
-    <li><a href="/notes/{{ e.slug }}/">{{ e.title }}</a></li>
-    {% endfor %}
-  </ul>
+<p>Notes and projects.</p>
 
-  <h2>Portfolio</h2>
-  <ul class="post-list">
-    {% for e in portfolio %}
-    <li><a href="/portfolio/{{ e.slug }}/">{{ e.title }}</a></li>
-    {% endfor %}
-  </ul>
-</section>
+<h2>Posts</h2>
+<ul class="post-list">
+  {% for e in posts %}
+  <li><a href="/posts/{{ e.slug }}/">{{ e.title }}</a></li>
+  {% endfor %}
+</ul>
+<p><a href="/posts/">All posts &rarr;</a></p>
+
+<h2>Projects</h2>
+<ul class="post-list">
+  {% for e in projects %}
+  <li><a href="/projects/{{ e.slug }}/">{{ e.title }}</a></li>
+  {% endfor %}
+</ul>
+<p><a href="/projects/">All projects &rarr;</a></p>
+
+<h2>Docs</h2>
+<p><a href="/docs/">Documentation &rarr;</a></p>
 {% endblock %}

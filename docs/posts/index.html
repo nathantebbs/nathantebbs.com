@@ -3,17 +3,35 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>{{ title }}</title>
+    <title>Posts</title>
     <link rel="stylesheet" href="/css/colors.css" />
     <link rel="stylesheet" href="/css/rfc.css" />
     <link rel="stylesheet" href="/css/pygments.css">
   </head>
   <body>
     <main class="rfc">
-      {% block content %}{% endblock %}
+      
+<nav class="top-nav">
+  <a href="/">&larr; Home</a>
+</nav>
+
+<h1>Posts</h1>
+
+<p>Short writeups and notes.</p>
+
+
+<ul class="post-list">
+  
+  <li>
+    <a href="/posts/hello-world/">Hello World</a>
+    <span class="meta"> &mdash; 2026-01-21</span>
+  </li>
+  
+</ul>
+
 
       <footer class="site-footer">
-        <small>&copy; {{ year }} Nathan Tebbs</small>
+        <small>&copy; 2026 Nathan Tebbs</small>
       </footer>
     </main>
   </body>
